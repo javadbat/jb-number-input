@@ -1,0 +1,40 @@
+{
+  "name": "jb-number-input",
+  "description": "number input web component",
+  "type": "module",
+  "author": {
+		"name": "mohammad javad bathaei",
+		"email": "javadbat@gmail.com"
+	},
+  "keywords": [
+    "jb",
+    "jb-number-input",
+    "number input",
+    "number",
+    "web component"
+  ],
+  "version": "0.0.1",
+  "bugs": "https://github.com/javadbat/jb-number-input/issues",
+  "license": "MIT",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/",
+    "dist/"
+  ],
+  "main": "index.js",
+  "types": "./dist/web-component/jb-number-input/lib/jb-number-input.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": ["./dist/web-component/jb-number-input/lib/jb-number-input.d.ts"],
+      "types":["./dist/web-component/jb-number-input/lib/types.d.ts"]
+    }
+  },
+  "repository": {
+		"type": "git",
+		"url": "git@github.com:javadbat/jb-number-input.git"
+  },
+  "dependencies": {
+    "jb-input": ">=2.4.1"
+  }
+}
