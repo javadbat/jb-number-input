@@ -31,7 +31,7 @@ import 'jb-number-input';
 
 ```HTML
 <script src="https://unpkg.com/jb-input/dist/jb-number-input.umd.js"></script>
-<script src="https://unpkg.com/jb-payment-input/dist/jb-number-input.umd.js"></script>
+<script src="https://unpkg.com/jb-number-input/dist/jb-number-input.umd.js"></script>
 ```
 2- use web component like any other html tag whenever you need
 
