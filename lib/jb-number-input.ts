@@ -1,7 +1,7 @@
 import CSS from "./jb-number-input.scss";
 import NumberInputButtonsHTML from "./number-input-buttons.html";
 import "jb-input";
-import { NumberFieldParameter, NumberFieldParameterInput } from './types';
+import { NumberFieldParameter, NumberFieldParameterInput, NumberInputElements } from './types';
 // eslint-disable-next-line no-duplicate-imports
 import { JBInputWebComponent } from "jb-input";
 import { JBInputValue, ValidationValue } from "jb-input/types";
@@ -24,10 +24,26 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     useThousandSeparator: false,
     thousandSeparator: ",",
     acceptNegative: true,
-    showButtons: true,
     //will show persian number even if user type en number but value will be passed as en number
     showPersianNumber: false,
   };
+  numberInputElements!:NumberInputElements;
+  #showControlButton = false;
+  get showControlButton(){
+    return this.#showControlButton;
+  }
+  set showControlButton(value:boolean){
+    if(value == this.#showControlButton){
+      //nothing changes 
+      return;
+    }
+    this.#showControlButton = value;
+    if(value === true){
+      this.#addControlButtons();
+    }else if(value===false){
+      this.#removeControlButtons();
+    }
+  }
   constructor() {
     super();
     this.#initNumberInputWebComponent();
@@ -43,6 +59,9 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     this.shadowRoot.appendChild(element.content.cloneNode(true));
     this.validation.addValidationListGetter(this.#getNumberInputValidations.bind(this));
     this.elements.input.inputMode = "numeric";
+    this.numberInputElements = {
+      controlButtons:null
+    };
     this.#addNumberInputEventListeners();
     this.addStandardValueCallback(this.#standardNumberValue.bind(this));
   }
@@ -142,8 +161,6 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     }
   }
   #addControlButtons() {
-    //TODO: we dont need it anymore after separation you can delete this and refactor style
-    this.elements.inputBox.classList.add("--type-number");
     const buttonsElement = document.createElement("div");
     buttonsElement.classList.add("number-control-wrapper");
     buttonsElement.innerHTML = NumberInputButtonsHTML;
@@ -153,13 +170,13 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     buttonsElement
       .querySelector(".decrease-number-button")!
       .addEventListener("click", this.decreaseNumber.bind(this,true));
-    this.elements.inputBox.appendChild(buttonsElement);
+    this.elements.slots.endSection.appendChild(buttonsElement);
+    this.numberInputElements.controlButtons = buttonsElement;
   }
-  /**
-   * @description add + & - control button on the text field
-   */
-  addControlButtons() {
-    this.#addControlButtons();
+  #removeControlButtons() {
+    if(this.numberInputElements.controlButtons){
+      this.numberInputElements.controlButtons.remove();
+    }
   }
   #onNumberInputKeyDown(e: KeyboardEvent): void {
     //handle up and down on number key
@@ -235,16 +252,6 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     }
     if (
       numberFieldParameters &&
-      numberFieldParameters.showButtons !== undefined
-    ) {
-      if (numberFieldParameters.showButtons === false) {
-        this.removeNumberInputButtons();
-      } else {
-        this.addNumberInputButtons();
-      }
-    }
-    if (
-      numberFieldParameters &&
       typeof numberFieldParameters.showPersianNumber == "boolean"
     ) {
       this.#numberFieldParameters.showPersianNumber =
@@ -288,14 +295,6 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     if (isPreventDefault) {
       e.preventDefault();
     }
-  }
-  removeNumberInputButtons() {
-    //when user want number input but without any + - button
-    this.elements.inputBox.classList.add("--without-number-button");
-  }
-  addNumberInputButtons() {
-    //when user want number input but without any + - button
-    this.elements.inputBox.classList.remove("--without-number-button");
   }
 }
 

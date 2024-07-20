@@ -70,8 +70,6 @@ if you want to control which number user may input, ex: you may want to let user
         maxValue: 1000,
         //min number value user can input. if user input smaller number it will be set to this value.
         minValue:1,
-        //show + and - button in input so touch user can change the value more easily
-        showButtons:true,
         // will show persian number instead of english number in output but original input value remain in english char
         //if true and user type 123 and see ۱۲۳ but inputtedDom.value will be 123
         showPersianNumber:false,
@@ -102,13 +100,20 @@ you may use all [jb-input](https://github.com/javadbat/jb-input) attribute + bel
 | input-type     | `CARD` for 16 card number and `SHABA` to type shaba number input                               |
 | separator      | separation char. default is ` `(space) but you can set any text you want like `-` or `_`       | -->
 
+
 ### set custom style
 
 in some cases in your project you need to change default style of web-component for example you need zero margin or different border-radius and etc.    
 if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component.
 since jb-payment-input use jb-input underneath, read [jb-input](https://github.com/javadbat/jb-input) custom style list.
 
-#### number input inbox element style
+#### control Buttons
+you can add `+` and `-` button into your box element for easier access to change the number with just simple click or touch.
+if you want to add this buttons you just have to set `showControlButton` of component:
+```js
+document.getElementByTagName('jb-number-input').showControlButton = true //or false
+```
+after that if user click on the `+` or `-` value will increase or decrease base on the step you set in `setNumberFieldParameter`(default is 1)
 
 | css variable name                        | description                                                                                   |
 | -------------                            | -------------                                                                                 |
