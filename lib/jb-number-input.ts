@@ -32,9 +32,9 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     super();
     this.#initNumberInputWebComponent();
   }
-  #addPaymentInputEventListeners() {
-    this.addEventListener("beforeinput", this.#onNumberInputBeforeInput.bind(this));
-    this.addEventListener("keydown", this.#onInputKeyDown.bind(this));
+  #addNumberInputEventListeners() {
+    this.elements.input.addEventListener("beforeinput", this.#onNumberInputBeforeInput.bind(this));
+    this.elements.input.addEventListener("keydown", this.#onNumberInputKeyDown.bind(this));
   }
   #initNumberInputWebComponent() {
     const html = `<style>${CSS}</style>`;
@@ -42,7 +42,8 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     element.innerHTML = html;
     this.shadowRoot.appendChild(element.content.cloneNode(true));
     this.validation.addValidationListGetter(this.#getNumberInputValidations.bind(this));
-    this.#addPaymentInputEventListeners();
+    this.elements.input.inputMode = "numeric";
+    this.#addNumberInputEventListeners();
     this.addStandardValueCallback(this.#standardNumberValue.bind(this));
   }
   static get observedAttributes() {
@@ -52,7 +53,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
     // call base jb-input on attribute changes
-    if (["input-type", "separator"].includes(name)) {
+    if (["thousand-separator", 'type'].includes(name)) {
       this.#onNumberInputAttributeChange(name, newValue);
     } else {
       this.onAttributeChange(name, newValue);
@@ -64,11 +65,16 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
   }
   #onNumberInputAttributeChange(name: string, value: string) {
     //TODO: get number field parameters as a attribute
-    // switch(name){
-    //   case 'separator':
-    //     this.separatorString = value;
-    //     break;
-    // }
+    switch(name){
+      case 'separator':
+        this.#numberFieldParameters.thousandSeparator = value;
+        break;
+      case 'type':
+        //we do nothing but just prevent input to get number type because of some limitation
+        //TODO: change inputmode base on provided type if it doesn't provided by user
+        break;
+      
+    }
   }
   #getNumberValueString(rawText: string){
     return standardValueForNumberInput(
@@ -98,8 +104,8 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     const res = stNum1 + stNum2;
     return res / zarib;
   }
-  increaseNumber() {
-    const currentNumber = parseFloat(this.value);
+  increaseNumber(shouldCallOnChange = false) {
+    const currentNumber = Number(this.value);
     if (isNaN(currentNumber)) {
       return;
     }
@@ -107,9 +113,11 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     const newNumber = this.#addFloatNumber(currentNumber, step);
     this.value = `${newNumber}`;
     this.validation.checkValidity(true);
-    this.#dispatchOnChangeEvent();
+    if(shouldCallOnChange){
+      this.#dispatchOnChangeEvent();
+    }
   }
-  decreaseNumber() {
+  decreaseNumber(shouldCallOnChange = false) {
     const currentNumber = parseFloat(this.value);
     if (isNaN(currentNumber)) {
       return;
@@ -129,7 +137,9 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     }
     this.value = `${newNumber}`;
     this.validation.checkValidity(true);
-    this.#dispatchOnChangeEvent();
+    if(shouldCallOnChange){
+      this.#dispatchOnChangeEvent();
+    }
   }
   #addControlButtons() {
     //TODO: we dont need it anymore after separation you can delete this and refactor style
@@ -139,10 +149,10 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     buttonsElement.innerHTML = NumberInputButtonsHTML;
     buttonsElement
       .querySelector(".increase-number-button")!
-      .addEventListener("click", this.increaseNumber.bind(this));
+      .addEventListener("click", this.increaseNumber.bind(this,true));
     buttonsElement
       .querySelector(".decrease-number-button")!
-      .addEventListener("click", this.decreaseNumber.bind(this));
+      .addEventListener("click", this.decreaseNumber.bind(this,true));
     this.elements.inputBox.appendChild(buttonsElement);
   }
   /**
@@ -151,19 +161,18 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
   addControlButtons() {
     this.#addControlButtons();
   }
-  #onInputKeyDown(e: KeyboardEvent): void {
+  #onNumberInputKeyDown(e: KeyboardEvent): void {
     //handle up and down on number key
-    if (this.getAttribute("type") == "number") {
-      const key = e.key;
-      if (key == "ArrowUp") {
-        this.increaseNumber!();
-        e.preventDefault();
-      }
-      if (key == "ArrowDown") {
-        this.decreaseNumber!();
-        e.preventDefault();
-      }
+    const key = e.key;
+    if (key == "ArrowUp") {
+      this.increaseNumber(false);
+      e.preventDefault();
     }
+    if (key == "ArrowDown") {
+      this.decreaseNumber(false);
+      e.preventDefault();
+    }
+  
   }
   /**
  * @public
