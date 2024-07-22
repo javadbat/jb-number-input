@@ -1,6 +1,6 @@
 # jb-number-input
 
-this superset component on [jb-input](https://github.com/javadbat/jb-input) , just for number input with extra filter and ready to use validator
+this is a superset component on [jb-input](https://github.com/javadbat/jb-input) , just for number input with extra filter and ready to use validator
 
 ## instructions
 
