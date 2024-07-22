@@ -114,7 +114,3 @@ if you want to add this buttons you just have to set `showControlButton` of comp
 document.getElementByTagName('jb-number-input').showControlButton = true //or false
 ```
 after that if user click on the `+` or `-` value will increase or decrease base on the step you set in `setNumberFieldParameter`(default is 1)
-
-| css variable name                        | description                                                                                   |
-| -------------                            | -------------                                                                                 |
-| --jb-input-box-indicator-padding         | padding of jb-input-inbox-element, the value default is `8px16px`                             |
