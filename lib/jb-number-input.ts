@@ -13,34 +13,122 @@ import { isStringIsNumber, standardValueForNumberInput } from "./utils";
 export class JBNumberInputWebComponent extends JBInputWebComponent implements WithValidation<ValidationValue> {
   #numberFieldParameters: NumberFieldParameter = {
     //if input type is number we use this step to change value on +- clicks
-    step: 1,
     maxValue: null,
     minValue: null,
     //how many decimal  place we accept
     decimalPrecision: null,
-    //if user type or paste something not a number, this char will be filled the replacement in most cases will be '0'
-    invalidNumberReplacement: "",
-    //for money and big number separate with a comma
-    useThousandSeparator: false,
-    thousandSeparator: ",",
     acceptNegative: true,
-    //will show persian number even if user type en number but value will be passed as en number
-    showPersianNumber: false,
   };
-  numberInputElements!:NumberInputElements;
+  //
+  get minValue(){
+    return this.#numberFieldParameters.minValue;
+  }
+  set minValue(value:number | string){
+    const newValue = Number(value);
+    if(Number.isNaN(newValue)){
+      console.error("min value is not a valid number");
+      return;
+    }
+    this.#numberFieldParameters.minValue = newValue;
+  }
+  //
+  get maxValue(){
+    return this.#numberFieldParameters.maxValue;
+  }
+  set maxValue(value:number|string){
+    const newValue = Number(value);
+    if(Number.isNaN(newValue)){
+      console.error("max value is not a valid number");
+      return;
+    }
+    this.#numberFieldParameters.maxValue = newValue;
+  }
+  //
+  get decimalPrecision(){
+    return this.#numberFieldParameters.decimalPrecision;
+  }
+  set decimalPrecision(value:number | string){
+    const newValue = Number(value);
+    if(Number.isNaN(newValue)){
+      console.error("decimalPrecision value is not a valid number");
+      return;
+    }
+    this.#numberFieldParameters.decimalPrecision = newValue;
+  }
+  //
+  get acceptNegative(){
+    return this.#numberFieldParameters.acceptNegative;
+  }
+  set acceptNegative(value:boolean){
+    this.#numberFieldParameters.acceptNegative = Boolean(value);
+  }
+  //how many step number increase or decrease on + , - or arrow up , arrow down
+  #step = 1;
+  get step() {
+    return this.#step;
+  }
+  set step(value: number) {
+    if (Number.isNaN(Number(value))) {
+      console.error("step must be a number");
+      return;
+    }
+    this.#step = value;
+  }
+  //for money and big number separate with a comma
+  #showThousandSeparator = false;
+  get showThousandSeparator() {
+    return this.#showThousandSeparator;
+  }
+  set showThousandSeparator(value: boolean) {
+    const newValue = Boolean(value);
+    if(newValue === this.#showThousandSeparator){
+      return;
+    }
+    this.#showThousandSeparator = newValue;
+    this.value = `${this.value}`;
+  }
+  #thousandSeparator = ","
+  get thousandSeparator() {
+    return this.#thousandSeparator;
+  }
+  set thousandSeparator(value: string) {
+    if( this.#thousandSeparator === value){
+      return;
+    }
+    this.#thousandSeparator = String(value);
+    this.value = `${this.value}`;
+  }
+  //will show persian number even if user type en number but value will be passed as en number
+  #showPersianNumber = false;
+  get showPersianNumber() {
+    return this.#showPersianNumber;
+  }
+  set showPersianNumber(value: boolean) {
+    this.#showPersianNumber = Boolean(value);
+    this.value = `${this.value}`;
+  }
+  //if user type or paste something not a number, this char will be filled the replacement in most cases will be '0'
+  #invalidNumberReplacement = "";
+  get invalidNumberReplacement() {
+    return this.#invalidNumberReplacement;
+  }
+  set invalidNumberReplacement(value: string) {
+    this.#invalidNumberReplacement = String(value);
+  }
+  numberInputElements!: NumberInputElements;
   #showControlButton = false;
-  get showControlButton(){
+  get showControlButton() {
     return this.#showControlButton;
   }
-  set showControlButton(value:boolean){
-    if(value == this.#showControlButton){
+  set showControlButton(value: boolean) {
+    if (value == this.#showControlButton) {
       //nothing changes 
       return;
     }
     this.#showControlButton = value;
-    if(value === true){
+    if (value === true) {
       this.#addControlButtons();
-    }else if(value===false){
+    } else if (value === false) {
       this.#removeControlButtons();
     }
   }
@@ -60,19 +148,23 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     this.validation.addValidationListGetter(this.#getNumberInputValidations.bind(this));
     this.elements.input.inputMode = "numeric";
     this.numberInputElements = {
-      controlButtons:null
+      controlButtons: null
     };
     this.#addNumberInputEventListeners();
     this.addStandardValueCallback(this.#standardNumberValue.bind(this));
   }
+  static get numberInputObservedAttributes() {
+    return ["thousand-separator", "step", "show-persian-number", "min", "max", "decimal-precision", "accept-negative", "show-control-button"];
+  }
   static get observedAttributes() {
     return [
       ...JBInputWebComponent.observedAttributes,
+      ...JBNumberInputWebComponent.numberInputObservedAttributes
     ];
   }
   attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
     // call base jb-input on attribute changes
-    if (["thousand-separator", 'type'].includes(name)) {
+    if ([...JBNumberInputWebComponent.numberInputObservedAttributes, 'type'].includes(name)) {
       this.#onNumberInputAttributeChange(name, newValue);
     } else {
       this.onAttributeChange(name, newValue);
@@ -83,22 +175,58 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     return standardValue;
   }
   #onNumberInputAttributeChange(name: string, value: string) {
-    //TODO: get number field parameters as a attribute
-    switch(name){
-      case 'separator':
-        this.#numberFieldParameters.thousandSeparator = value;
+    switch (name) {
+      case 'thousand-separator':
+        if (value == '' || value == "true" || value == "false") {
+
+          this.showThousandSeparator = value == '' ? true : Boolean(value);
+        } else {
+          this.#showThousandSeparator = true;
+          this.#thousandSeparator = value;
+        }
+        break;
+      case 'step':
+        this.step = Number(value);
+        break;
+      case "show-persian-number":
+        this.showPersianNumber = value == '' ? true : Boolean(value);
+        break;
+      case 'min':
+        this.minValue = value;
+        break;
+      case 'max':
+        this.maxValue = value;
+        break;
+      case "decimal-precision":
+        this.decimalPrecision = value;
+        break;
+      case "accept-negative":
+        if (value == '' || value == "true" || value == "false") {
+          this.acceptNegative = value == '' ? true : Boolean(value);
+        }
+        break;
+      case "show-control-button":
+        if (value == '' || value == "true" || value == "false") {
+          this.showControlButton = value == '' ? true : Boolean(value);
+        }
         break;
       case 'type':
         //we do nothing but just prevent input to get number type because of some limitation
         //TODO: change inputmode base on provided type if it doesn't provided by user
         break;
-      
+
     }
   }
-  #getNumberValueString(rawText: string){
+  #getNumberValueString(rawText: string) {
     return standardValueForNumberInput(
       rawText,
-      this.#numberFieldParameters
+      this.#numberFieldParameters,
+      {
+        invalidNumberReplacement:this.#invalidNumberReplacement,
+        thousandSeparator:this.#thousandSeparator,
+        useThousandSeparator:this.showThousandSeparator,
+        showPersianNumber:this.#showPersianNumber
+      }
     );
   }
   #getNumberInputValidations(): ValidationItem<JBInputValue>[] {
@@ -128,11 +256,11 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     if (isNaN(currentNumber)) {
       return;
     }
-    const step = this.#numberFieldParameters ? this.#numberFieldParameters.step : 1;
+    const step = this.#step;
     const newNumber = this.#addFloatNumber(currentNumber, step);
     this.value = `${newNumber}`;
     this.validation.checkValidity(true);
-    if(shouldCallOnChange){
+    if (shouldCallOnChange) {
       this.#dispatchOnChangeEvent();
     }
   }
@@ -142,7 +270,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
       return;
     }
     const step = this.#numberFieldParameters
-      ? this.#numberFieldParameters.step
+      ? this.#step
       : 1;
     let newNumber = this.#addFloatNumber(currentNumber, -1 * step);
     if (
@@ -156,7 +284,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     }
     this.value = `${newNumber}`;
     this.validation.checkValidity(true);
-    if(shouldCallOnChange){
+    if (shouldCallOnChange) {
       this.#dispatchOnChangeEvent();
     }
   }
@@ -166,15 +294,15 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     buttonsElement.innerHTML = NumberInputButtonsHTML;
     buttonsElement
       .querySelector(".increase-number-button")!
-      .addEventListener("click", this.increaseNumber.bind(this,true));
+      .addEventListener("click", this.increaseNumber.bind(this, true));
     buttonsElement
       .querySelector(".decrease-number-button")!
-      .addEventListener("click", this.decreaseNumber.bind(this,true));
+      .addEventListener("click", this.decreaseNumber.bind(this, true));
     this.elements.slots.endSection.appendChild(buttonsElement);
     this.numberInputElements.controlButtons = buttonsElement;
   }
   #removeControlButtons() {
-    if(this.numberInputElements.controlButtons){
+    if (this.numberInputElements.controlButtons) {
       this.numberInputElements.controlButtons.remove();
     }
   }
@@ -189,75 +317,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
       this.decreaseNumber(false);
       e.preventDefault();
     }
-  
-  }
-  /**
- * @public
- * @description change number input config base on developer need
- */
-  setNumberFieldParameter(
-    numberFieldParameters: NumberFieldParameterInput
-  ): void {
-    if (numberFieldParameters.step && !isNaN(numberFieldParameters.step)) {
-      this.#numberFieldParameters!.step = numberFieldParameters.step;
-    }
-    if (
-      numberFieldParameters &&
-      numberFieldParameters.decimalPrecision !== null &&
-      numberFieldParameters.decimalPrecision !== undefined &&
-      !isNaN(numberFieldParameters.decimalPrecision)
-    ) {
-      this.#numberFieldParameters!.decimalPrecision =
-        numberFieldParameters.decimalPrecision;
-    }
-    if (
-      numberFieldParameters &&
-      numberFieldParameters.invalidNumberReplacement
-    ) {
-      this.#numberFieldParameters!.invalidNumberReplacement =
-        numberFieldParameters.invalidNumberReplacement;
-    }
-    if (
-      numberFieldParameters &&
-      typeof numberFieldParameters.useThousandSeparator == "boolean"
-    ) {
-      this.#numberFieldParameters!.useThousandSeparator =
-        numberFieldParameters.useThousandSeparator;
-    }
-    if (
-      numberFieldParameters &&
-      typeof numberFieldParameters.thousandSeparator == "string"
-    ) {
-      this.#numberFieldParameters!.thousandSeparator =
-        numberFieldParameters.thousandSeparator;
-    }
-    if (
-      numberFieldParameters &&
-      typeof numberFieldParameters.acceptNegative == "boolean"
-    ) {
-      this.#numberFieldParameters!.acceptNegative =
-        numberFieldParameters.acceptNegative;
-    }
-    if (
-      numberFieldParameters &&
-      typeof numberFieldParameters.maxValue == "number"
-    ) {
-      this.#numberFieldParameters.maxValue = numberFieldParameters.maxValue;
-    }
-    if (
-      numberFieldParameters &&
-      typeof numberFieldParameters.minValue == "number"
-    ) {
-      this.#numberFieldParameters.minValue = numberFieldParameters.minValue;
-    }
-    if (
-      numberFieldParameters &&
-      typeof numberFieldParameters.showPersianNumber == "boolean"
-    ) {
-      this.#numberFieldParameters.showPersianNumber =
-        numberFieldParameters.showPersianNumber;
-    }
-    this.value = `${this.value}`;
+
   }
   #onNumberInputBeforeInput(e: InputEvent): void {
     //TODO: read and simplify

@@ -1,5 +1,5 @@
 .jb-input-web-component {
-    --jb-input-input-direction: ltr;
+    --jb-input-input-direction: var(--jb-number-input-input-direction, ltr);
 
     .number-control-wrapper {
         .number-control-buttons {
@@ -7,20 +7,20 @@
             height: 100%;
 
             .number-control-button {
-                width: var(--jb-input-number-button-width, 36px);
+                width: var(--jb-number-input-button-width, 36px);
                 height: 100%;
                 //background-color: red;
                 text-align: center;
             }
 
             .increase-number-button {
-                background: var(--jb-input-increase-button-bg, transparent);
-                border: var(--jb-input-increase-button-border, none);
-                border-radius: var(--jb-input-increase-button-border-radius, 0);
+                background: var(--jb-number-input-increase-button-bg, transparent);
+                border: var(--jb-number-input-increase-button-border, none);
+                border-radius: var(--jb-number-input-increase-button-border-radius, 0);
                 box-sizing: border-box;
 
                 .increase-icon {
-                    stroke: var(--jb-input-increase-button-color, #bbb);
+                    stroke: var(--jb-number-input-increase-button-color, #bbb);
                     stroke-width: 14px;
                     height: 100%;
                     width: 100%;
@@ -29,19 +29,19 @@
 
                 &:hover {
                     .increase-icon {
-                        stroke: var(--jb-input-increase-button-color-hover, #00b600);
+                        stroke: var(--jb-number-input-increase-button-color-hover, #00b600);
                     }
                 }
             }
 
             .decrease-number-button {
-                border: var(--jb-input-decrease-button-border, none);
-                border-radius: var(--jb-input-decrease-button-border-radius, 0);
-                background: var(--jb-input-decrease-button-bg, transparent);
+                border: var(--jb-number-input-decrease-button-border, none);
+                border-radius: var(--jb-number-input-decrease-button-border-radius, 0);
+                background: var(--jb-number-input-decrease-button-bg, transparent);
                 box-sizing: border-box;
 
                 .decrease-icon {
-                    stroke: var(--jb-input-decrease-button-color, #bbb);
+                    stroke: var(--jb-number-input-decrease-button-color, #bbb);
                     stroke-width: 14px;
                     height: 100%;
                     width: 100%;
@@ -50,7 +50,7 @@
 
                 &:hover {
                     .decrease-icon {
-                        stroke: var(--jb-input-decrease-button-color-hover, #ff1026);
+                        stroke: var(--jb-number-input-decrease-button-color-hover, #ff1026);
                     }
                 }
             }

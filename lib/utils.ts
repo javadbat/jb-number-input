@@ -1,8 +1,8 @@
 import { enToFaDigits, faToEnDigits } from "../../../common/scripts/persian-helper";
 import { type JBInputValue} from "jb-input/types";
-import { type NumberFieldParameter} from "./types";
+import { type TypeParameter, type NumberFieldParameter} from "./types";
 
-export function standardValueForNumberInput(inputValueString:string, numberFieldParameters:NumberFieldParameter):JBInputValue{
+export function standardValueForNumberInput(inputValueString:string, numberFieldParameters:NumberFieldParameter, typeParameter:TypeParameter):JBInputValue{
   if(inputValueString == '-' && numberFieldParameters!.acceptNegative == true){
     //if user type - and we accept negative number we let user to continue typing
     return {
@@ -12,10 +12,10 @@ export function standardValueForNumberInput(inputValueString:string, numberField
   }
   let valueString = inputValueString;
   //if  comma separator is used we need to remove it
-  if(numberFieldParameters && numberFieldParameters.useThousandSeparator){
-    valueString = valueString.replace(new RegExp(`${numberFieldParameters.thousandSeparator}`,'g'), '');
+  if(typeParameter.useThousandSeparator){
+    valueString = valueString.replace(new RegExp(`${typeParameter.thousandSeparator}`,'g'), '');
   }
-  //if our input type is number and user want to set it to new value we do nececcery logic here
+  //if our input type is number and user want to set it to new value we do necessary logic here
   let value = Number(valueString);
   if (isNaN(value)) {
     //replace arabic and persian number
@@ -24,7 +24,7 @@ export function standardValueForNumberInput(inputValueString:string, numberField
     //if invalidity is not for persian number
     if(isNaN(value)){
       //we change nothing
-      valueString = numberFieldParameters!.invalidNumberReplacement;
+      valueString = typeParameter.invalidNumberReplacement;
     }
   }
   //add max and min checker to prevent bigger value assignment
@@ -36,9 +36,9 @@ export function standardValueForNumberInput(inputValueString:string, numberField
     value = numberFieldParameters.minValue;
     valueString = `${numberFieldParameters.minValue}`;
   }
-  const[integerNums, decimalNums] = valueString.split('.');
+  const[integerNumbers, decimalNumbers] = valueString.split('.');
     
-  const decimalPrecisionCount = decimalNums ? decimalNums.length : 0;
+  const decimalPrecisionCount = decimalNumbers ? decimalNumbers.length : 0;
   if (numberFieldParameters && !(numberFieldParameters.decimalPrecision === null || numberFieldParameters.decimalPrecision == undefined) && decimalPrecisionCount && decimalPrecisionCount > numberFieldParameters.decimalPrecision) {
     // truncate extra decimal
     const checkRegex = new RegExp(`^-?\\d+(?:\\.\\d{0,${numberFieldParameters!.decimalPrecision}})?`);
@@ -48,15 +48,15 @@ export function standardValueForNumberInput(inputValueString:string, numberField
     }
   }
   //remove start zero when number is more than one digit 065 => 65
-  if(integerNums.startsWith('0') && integerNums.length > 1){
+  if(integerNumbers.startsWith('0') && integerNumbers.length > 1){
     valueString = valueString.substring(1);
   }
-  if( integerNums.startsWith('-') && integerNums.charAt(1) == '0' && integerNums.length > 2){
+  if( integerNumbers.startsWith('-') && integerNumbers.charAt(1) == '0' && integerNumbers.length > 2){
     valueString = '-'+valueString.substring(2);
   }
   // check for negative value
-  if(numberFieldParameters && numberFieldParameters.acceptNegative == false && integerNums.startsWith('-')){
-    valueString = numberFieldParameters!.invalidNumberReplacement;
+  if(numberFieldParameters && numberFieldParameters.acceptNegative == false && integerNumbers.startsWith('-')){
+    valueString = typeParameter.invalidNumberReplacement;
     console.error('negative number is not allowed change numberFieldParameters.acceptNegative to true to allow negative numbers');
   }
   const standardValueObject: JBInputValue = {
@@ -64,11 +64,11 @@ export function standardValueForNumberInput(inputValueString:string, numberField
     value: valueString,
   };
     // add thousand separator comma
-  if(numberFieldParameters && numberFieldParameters.useThousandSeparator){
-    standardValueObject.displayValue = valueString.replace(/\B(?=(\d{3})+(?!\d))/g, numberFieldParameters.thousandSeparator);
+  if(typeParameter.useThousandSeparator){
+    standardValueObject.displayValue = valueString.replace(/\B(?=(\d{3})+(?!\d))/g, typeParameter.thousandSeparator);
   }
   //convert en number to persian number
-  if(numberFieldParameters && numberFieldParameters.showPersianNumber){
+  if(typeParameter.showPersianNumber){
     standardValueObject.displayValue = enToFaDigits(standardValueObject.displayValue);
   }
   return standardValueObject;

@@ -1,13 +1,14 @@
 export type NumberFieldParameter = {
-    step:number;
     decimalPrecision:number | null;
     acceptNegative:boolean;
     maxValue:number | null;
-    useThousandSeparator:boolean;
     minValue:number | null;
-    thousandSeparator:string;
-    showPersianNumber:boolean;
-    invalidNumberReplacement:string;
+}
+export type TypeParameter = {
+    useThousandSeparator:boolean,
+    invalidNumberReplacement:string,
+    thousandSeparator:string,
+    showPersianNumber:boolean,
 }
 export type NumberFieldParameterInput = Partial<NumberFieldParameter>;
 export type NumberInputElements = {
