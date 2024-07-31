@@ -60,6 +60,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
     return this.#numberFieldParameters.acceptNegative;
   }
   set acceptNegative(value:boolean){
+
     this.#numberFieldParameters.acceptNegative = Boolean(value);
   }
   //how many step number increase or decrease on + , - or arrow up , arrow down
@@ -179,7 +180,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
       case 'thousand-separator':
         if (value == '' || value == "true" || value == "false") {
 
-          this.showThousandSeparator = value == '' ? true : Boolean(value);
+          this.showThousandSeparator = value == '' ? true : value==='true';
         } else {
           this.#showThousandSeparator = true;
           this.#thousandSeparator = value;
@@ -189,7 +190,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
         this.step = Number(value);
         break;
       case "show-persian-number":
-        this.showPersianNumber = value == '' ? true : Boolean(value);
+        this.showPersianNumber = value == '' ? true : value==='true';
         break;
       case 'min':
         this.minValue = value;
@@ -202,12 +203,12 @@ export class JBNumberInputWebComponent extends JBInputWebComponent implements Wi
         break;
       case "accept-negative":
         if (value == '' || value == "true" || value == "false") {
-          this.acceptNegative = value == '' ? true : Boolean(value);
+          this.acceptNegative = value == '' ? true : value==='true';
         }
         break;
       case "show-control-button":
         if (value == '' || value == "true" || value == "false") {
-          this.showControlButton = value == '' ? true : Boolean(value);
+          this.showControlButton = value == '' ? true : value==='true';
         }
         break;
       case 'type':

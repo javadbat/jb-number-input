@@ -7,13 +7,19 @@ export function standardValueForNumberInput(inputValueString:string, numberField
     //if user type - and we accept negative number we let user to continue typing
     return {
       displayValue:inputValueString,
-      value:inputValueString
+      value:'-0'
     };
   }
   let valueString = inputValueString;
   //if  comma separator is used we need to remove it
   if(typeParameter.useThousandSeparator){
     valueString = valueString.replace(new RegExp(`${typeParameter.thousandSeparator}`,'g'), '');
+  }
+  const isNegativeNumber = valueString.at(0) == '-';
+  //remove all unrelated char from value
+  valueString = faToEnDigits(valueString).replace(/[^0-9.]/g,'');
+  if(isNegativeNumber && numberFieldParameters.acceptNegative){
+    valueString = '-'+valueString;
   }
   //if our input type is number and user want to set it to new value we do necessary logic here
   let value = Number(valueString);
@@ -53,11 +59,6 @@ export function standardValueForNumberInput(inputValueString:string, numberField
   }
   if( integerNumbers.startsWith('-') && integerNumbers.charAt(1) == '0' && integerNumbers.length > 2){
     valueString = '-'+valueString.substring(2);
-  }
-  // check for negative value
-  if(numberFieldParameters && numberFieldParameters.acceptNegative == false && integerNumbers.startsWith('-')){
-    valueString = typeParameter.invalidNumberReplacement;
-    console.error('negative number is not allowed change numberFieldParameters.acceptNegative to true to allow negative numbers');
   }
   const standardValueObject: JBInputValue = {
     displayValue: valueString,
