@@ -133,5 +133,5 @@ or you can set `show-control-button` attribute
 <jb-number-input show-control-button="true">
 <jb-number-input show-control-button="false">
 ```
-after that if user click on the `+` or `-` value will increase or decrease base on the step you set in `setNumberFieldParameter`(default is 1).    
+after that if user click on the `+` or `-` value will increase or decrease base on the step you set in `step` attribute(default is 1).    
 click on `+` `-` button will call `onChange` event.
