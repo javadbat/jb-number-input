@@ -1,12 +1,12 @@
 import CSS from "./jb-number-input.scss";
 import NumberInputButtonsHTML from "./number-input-buttons.html";
 import "jb-input";
-import { NumberFieldParameter, NumberFieldParameterInput, NumberInputElements } from './types';
+import { NumberFieldParameter, NumberInputElements } from './types';
 // eslint-disable-next-line no-duplicate-imports
 import { JBInputWebComponent } from "jb-input";
 import { JBInputValue, ValidationValue } from "jb-input/types";
 //TODO: update it when you move validation to core package
-import { type WithValidation, type ValidationItem } from "jb-input/types/validation";
+import { type WithValidation, type ValidationItem } from "jb-validation/types";
 import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils";
 //TODO: add barcode scanner or nfc reader
