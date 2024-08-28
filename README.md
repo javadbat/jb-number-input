@@ -3,6 +3,7 @@
 this is a superset component on [jb-input](https://github.com/javadbat/jb-input) , just for number input with extra filter and ready to use validator
 
 Demo: [codepen](https://codepen.io/javadbat/pen/gONgKRw) 
+
 ## instructions
 
 ### install
@@ -135,3 +136,11 @@ or you can set `show-control-button` attribute
 ```
 after that if user click on the `+` or `-` value will increase or decrease base on the step you set in `step` attribute(default is 1).    
 click on `+` `-` button will call `onChange` event.
+
+## Other Related Docs:
+
+- see [jb-number-input-react](https://github.com/javadbat/jb-number-input-react) if you want to use this component in a react app.
+
+- see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/master/docs/component-list.md) for more components
+
+- use [Contribution Guide](https://github.com/javadbat/design-system/blob/master/docs/contribution-guide.md) if you want to contribute in this component.

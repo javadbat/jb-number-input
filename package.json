@@ -13,7 +13,7 @@
     "number",
     "web component"
   ],
-  "version": "1.0.2",
+  "version": "1.0.5",
   "bugs": "https://github.com/javadbat/jb-number-input/issues",
   "license": "MIT",
   "files": [
@@ -35,6 +35,7 @@
 		"url": "git@github.com:javadbat/jb-number-input.git"
   },
   "dependencies": {
-    "jb-input": ">=3.0.1"
+    "jb-input": ">=3.0.5",
+    "jb-validation":">=0.0.2"
   }
 }
