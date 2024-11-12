@@ -4,13 +4,13 @@ import "jb-input";
 import { type NumberFieldParameter, type NumberInputElements } from './types';
 // eslint-disable-next-line no-duplicate-imports
 import { JBInputWebComponent } from "jb-input";
-import { type JBInputValue, type ValidationValue } from "jb-input/types";
+import { type JBInputValue } from "jb-input/types";
 //TODO: update it when you move validation to core package
 import { type WithValidation, type ValidationItem } from "jb-validation/types";
 import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils";
 //TODO: add barcode scanner or nfc reader
-export class JBNumberInputWebComponent extends JBInputWebComponent implements WithValidation<ValidationValue> {
+export class JBNumberInputWebComponent extends JBInputWebComponent {
   #numberFieldParameters: NumberFieldParameter = {
     //if input type is number we use this step to change value on +- clicks
     maxValue: null,
