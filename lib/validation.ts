@@ -1,5 +1,5 @@
-import { ValidationItem } from "jb-validation/types";
-import { JBInputValue } from "jb-input/types";
+import { type ValidationItem } from "jb-validation";
+import { type JBInputValue } from "jb-input";
 import {isStringIsNumber} from './utils';
 export const isNumberValidator :ValidationItem<JBInputValue> = {
   validator:({value})=>{

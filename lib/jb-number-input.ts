@@ -3,10 +3,9 @@ import NumberInputButtonsHTML from "./number-input-buttons.html";
 import "jb-input";
 import { type NumberFieldParameter, type NumberInputElements } from './types';
 // eslint-disable-next-line no-duplicate-imports
-import { JBInputWebComponent } from "jb-input";
-import { type JBInputValue } from "jb-input/types";
+import { JBInputWebComponent, type JBInputValue } from "jb-input";
 //TODO: update it when you move validation to core package
-import { type WithValidation, type ValidationItem } from "jb-validation/types";
+import {type ValidationItem } from "jb-validation";
 import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils";
 //TODO: add barcode scanner or nfc reader

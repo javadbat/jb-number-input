@@ -1,5 +1,5 @@
 import { enToFaDigits, faToEnDigits } from "../../../common/scripts/persian-helper";
-import { type JBInputValue} from "jb-input/types";
+import { type JBInputValue} from "jb-input";
 import { type TypeParameter, type NumberFieldParameter} from "./types";
 
 export function standardValueForNumberInput(inputValueString:string, numberFieldParameters:NumberFieldParameter, typeParameter:TypeParameter):JBInputValue{
