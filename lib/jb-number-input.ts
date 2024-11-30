@@ -259,7 +259,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     const step = this.#step;
     const newNumber = this.#addFloatNumber(currentNumber, step);
     this.value = `${newNumber}`;
-    this.validation.checkValidity(true);
+    this.validation.checkValidity({showError:true});
     if (shouldCallOnChange) {
       this.#dispatchOnChangeEvent();
     }
@@ -283,7 +283,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       newNumber = 0;
     }
     this.value = `${newNumber}`;
-    this.validation.checkValidity(true);
+    this.validation.checkValidity({showError:true});
     if (shouldCallOnChange) {
       this.#dispatchOnChangeEvent();
     }
