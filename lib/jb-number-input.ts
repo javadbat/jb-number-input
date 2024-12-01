@@ -23,6 +23,10 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     return this.#numberFieldParameters.minValue;
   }
   set minValue(value:number | string){
+    if(value === undefined || value === null){
+      this.#numberFieldParameters.minValue = null;
+      return;
+    }
     const newValue = Number(value);
     if(Number.isNaN(newValue)){
       console.error("min value is not a valid number");
@@ -35,6 +39,10 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     return this.#numberFieldParameters.maxValue;
   }
   set maxValue(value:number|string){
+    if(value === undefined || value === null){
+      this.#numberFieldParameters.maxValue = null;
+      return;
+    }
     const newValue = Number(value);
     if(Number.isNaN(newValue)){
       console.error("max value is not a valid number");
@@ -47,6 +55,10 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     return this.#numberFieldParameters.decimalPrecision;
   }
   set decimalPrecision(value:number | string){
+    if(value === undefined || value === null){
+      this.#numberFieldParameters.decimalPrecision = null;
+      return;
+    }
     const newValue = Number(value);
     if(Number.isNaN(newValue)){
       console.error("decimalPrecision value is not a valid number");
@@ -68,6 +80,10 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     return this.#step;
   }
   set step(value: number) {
+    if(value === undefined || value === null){
+      this.#step = null;
+      return;
+    }
     if (Number.isNaN(Number(value))) {
       console.error("step must be a number");
       return;
