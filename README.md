@@ -2,6 +2,15 @@
 
 this is a superset component on [jb-input](https://github.com/javadbat/jb-input) , just for number input with extra filter and ready to use validator
 
+benefits:
+
+- with thousand separator (1,000,000)
+- with  +- button
+- with keyboard support for up and down value with customizable step
+- with preventable negative value.
+- with min & max value.
+
+
 Demo: [codepen](https://codepen.io/javadbat/pen/gONgKRw) 
 
 ## instructions
