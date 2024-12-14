@@ -1,3 +1,6 @@
+import { EventTypeWithTarget } from "jb-input";
+import { JBNumberInputWebComponent } from "./jb-number-input";
+
 export type NumberFieldParameter = {
     decimalPrecision:number | null;
     acceptNegative:boolean;
@@ -14,3 +17,4 @@ export type NumberFieldParameterInput = Partial<NumberFieldParameter>;
 export type NumberInputElements = {
     controlButtons:HTMLDivElement | null;
 }
+export type JBNumberInputEventType<TEvent> = EventTypeWithTarget<TEvent,JBNumberInputWebComponent>

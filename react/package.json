@@ -1,0 +1,35 @@
+{
+  "name": "jb-number-input-react",
+  "description": "number input react component",
+  "type": "module",
+  "author": {
+		"name": "mohammad javad bathaei",
+		"email": "javadbat@gmail.com"
+	},
+  "keywords": [
+    "jb",
+    "jb-number-input",
+    "number",
+    "number input",
+    "react",
+    "react component"
+  ],
+  "version": "1.0.5",
+  "bugs": "https://github.com/javadbat/jb-number-input-react/issues",
+  "license": "MIT",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib/",
+    "dist/"
+  ],
+  "main": "index.js",
+  "types": "./dist/web-component/jb-number-input/react/lib/JBNumberInput.d.ts",
+  "repository": {
+		"type": "git",
+		"url": "git@github.com:javadbat/jb-number-input-react.git"
+  },
+  "dependencies": {
+    "jb-number-input": "file:../index.js"
+  }
+}

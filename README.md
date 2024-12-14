@@ -11,7 +11,11 @@ benefits:
 - with min & max value.
 
 
-Demo: [codepen](https://codepen.io/javadbat/pen/gONgKRw) 
+Demo: [codepen](https://codepen.io/javadbat/pen/gONgKRw)
+
+## using with JS frameworks
+
+to use this component in **react** see [`jb-number-input/react`](https://github.com/javadbat/jb-number-input/tree/main/react);
 
 ## instructions
 
@@ -148,7 +152,7 @@ click on `+` `-` button will call `onChange` event.
 
 ## Other Related Docs:
 
-- see [jb-number-input-react](https://github.com/javadbat/jb-number-input-react) if you want to use this component in a react app.
+- see [jb-number-input/react](https://github.com/javadbat/jb-number-input/tree/main/react) if you want to use this component in a react app.
 
 - see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/master/docs/component-list.md) for more components
 

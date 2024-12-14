@@ -13,14 +13,16 @@
     "number",
     "web component"
   ],
-  "version": "1.1.1",
+  "version": "1.2.3",
   "bugs": "https://github.com/javadbat/jb-number-input/issues",
   "license": "MIT",
   "files": [
     "LICENSE",
     "README.md",
     "lib/",
-    "dist/"
+    "dist/",
+    "react/",
+    "react/dist"
   ],
   "main": "index.js",
   "types": "./dist/web-component/jb-number-input/lib/jb-number-input.d.ts",
@@ -35,7 +37,7 @@
 		"url": "git@github.com:javadbat/jb-number-input.git"
   },
   "dependencies": {
-    "jb-input": ">=3.3.1",
-    "jb-validation":">=0.1.0"
+    "jb-input": ">=3.4.8",
+    "jb-validation":">=0.2.0"
   }
 }
