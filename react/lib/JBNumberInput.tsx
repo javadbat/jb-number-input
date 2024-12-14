@@ -20,12 +20,12 @@ declare global {
     }
 }
 // eslint-disable-next-line react/display-name
-export const JBNumberInput = forwardRef((props: Props, ref) => {
+export const JBNumberInput = forwardRef<JBNumberInputWebComponent | undefined,Props>((props: Props, ref) => {
   const element = useRef<JBNumberInputWebComponent>(null);
   const [refChangeCount, refChangeCountSetter] = useState(0);
   useImperativeHandle(
     ref,
-    () => (element ? element.current : {}),
+    () => (element ? element.current : undefined),
     [element],
   );
   //to force rerender for events

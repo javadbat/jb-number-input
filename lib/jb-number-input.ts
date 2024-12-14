@@ -8,6 +8,9 @@ import { JBInputWebComponent, type JBInputValue } from "jb-input";
 import {type ValidationItem } from "jb-validation";
 import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils";
+
+export * from "./types.js";
+
 //TODO: add barcode scanner or nfc reader
 export class JBNumberInputWebComponent extends JBInputWebComponent {
   #numberFieldParameters: NumberFieldParameter = {

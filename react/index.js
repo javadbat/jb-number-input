@@ -1,2 +1,1 @@
-import {JBNumberInput} from './dist/JBNumberInput.js';
-export {JBNumberInput};
+export * from './dist/JBNumberInput.js';

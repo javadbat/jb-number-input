@@ -14,7 +14,7 @@
     "react",
     "react component"
   ],
-  "version": "1.0.5",
+  "version": "1.0.6",
   "bugs": "https://github.com/javadbat/jb-number-input-react/issues",
   "license": "MIT",
   "files": [
@@ -30,6 +30,6 @@
 		"url": "git@github.com:javadbat/jb-number-input-react.git"
   },
   "dependencies": {
-    "jb-number-input": "file:../index.js"
+    "jb-number-input": ">=1.2.6"
   }
 }
