@@ -5,7 +5,7 @@ import { type NumberFieldParameter, type NumberInputElements } from './types';
 // eslint-disable-next-line no-duplicate-imports
 import { JBInputWebComponent, type JBInputValue } from "jb-input";
 //TODO: update it when you move validation to core package
-import {type ValidationItem } from "jb-validation";
+import { type ValidationItem } from "jb-validation";
 import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils";
 
@@ -22,58 +22,58 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     acceptNegative: true,
   };
   //
-  get minValue(){
+  get minValue() {
     return this.#numberFieldParameters.minValue;
   }
-  set minValue(value:number | string){
-    if(value === undefined || value === null){
+  set minValue(value: number | string) {
+    if (value === undefined || value === null) {
       this.#numberFieldParameters.minValue = null;
       return;
     }
     const newValue = Number(value);
-    if(Number.isNaN(newValue)){
+    if (Number.isNaN(newValue)) {
       console.error("min value is not a valid number");
       return;
     }
     this.#numberFieldParameters.minValue = newValue;
   }
   //
-  get maxValue(){
+  get maxValue() {
     return this.#numberFieldParameters.maxValue;
   }
-  set maxValue(value:number|string){
-    if(value === undefined || value === null){
+  set maxValue(value: number | string) {
+    if (value === undefined || value === null) {
       this.#numberFieldParameters.maxValue = null;
       return;
     }
     const newValue = Number(value);
-    if(Number.isNaN(newValue)){
+    if (Number.isNaN(newValue)) {
       console.error("max value is not a valid number");
       return;
     }
     this.#numberFieldParameters.maxValue = newValue;
   }
   //
-  get decimalPrecision(){
+  get decimalPrecision() {
     return this.#numberFieldParameters.decimalPrecision;
   }
-  set decimalPrecision(value:number | string){
-    if(value === undefined || value === null){
+  set decimalPrecision(value: number | string) {
+    if (value === undefined || value === null) {
       this.#numberFieldParameters.decimalPrecision = null;
       return;
     }
     const newValue = Number(value);
-    if(Number.isNaN(newValue)){
+    if (Number.isNaN(newValue)) {
       console.error("decimalPrecision value is not a valid number");
       return;
     }
     this.#numberFieldParameters.decimalPrecision = newValue;
   }
   //
-  get acceptNegative(){
+  get acceptNegative() {
     return this.#numberFieldParameters.acceptNegative;
   }
-  set acceptNegative(value:boolean){
+  set acceptNegative(value: boolean) {
 
     this.#numberFieldParameters.acceptNegative = Boolean(value);
   }
@@ -83,7 +83,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     return this.#step;
   }
   set step(value: number) {
-    if(value === undefined || value === null){
+    if (value === undefined || value === null) {
       this.#step = null;
       return;
     }
@@ -100,7 +100,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   }
   set showThousandSeparator(value: boolean) {
     const newValue = Boolean(value);
-    if(newValue === this.#showThousandSeparator){
+    if (newValue === this.#showThousandSeparator) {
       return;
     }
     this.#showThousandSeparator = newValue;
@@ -111,7 +111,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     return this.#thousandSeparator;
   }
   set thousandSeparator(value: string) {
-    if( this.#thousandSeparator === value){
+    if (this.#thousandSeparator === value) {
       return;
     }
     this.#thousandSeparator = String(value);
@@ -198,7 +198,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       case 'thousand-separator':
         if (value == '' || value == "true" || value == "false") {
 
-          this.showThousandSeparator = value == '' ? true : value==='true';
+          this.showThousandSeparator = value == '' ? true : value === 'true';
         } else {
           this.#showThousandSeparator = true;
           this.#thousandSeparator = value;
@@ -208,7 +208,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         this.step = Number(value);
         break;
       case "show-persian-number":
-        this.showPersianNumber = value == '' ? true : value==='true';
+        this.showPersianNumber = value == '' ? true : value === 'true';
         break;
       case 'min':
         this.minValue = value;
@@ -221,12 +221,12 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         break;
       case "accept-negative":
         if (value == '' || value == "true" || value == "false") {
-          this.acceptNegative = value == '' ? true : value==='true';
+          this.acceptNegative = value == '' ? true : value === 'true';
         }
         break;
       case "show-control-button":
         if (value == '' || value == "true" || value == "false") {
-          this.showControlButton = value == '' ? true : value==='true';
+          this.showControlButton = value == '' ? true : value === 'true';
         }
         break;
       case 'type':
@@ -241,10 +241,10 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       rawText,
       this.#numberFieldParameters,
       {
-        invalidNumberReplacement:this.#invalidNumberReplacement,
-        thousandSeparator:this.#thousandSeparator,
-        useThousandSeparator:this.showThousandSeparator,
-        showPersianNumber:this.#showPersianNumber
+        invalidNumberReplacement: this.#invalidNumberReplacement,
+        thousandSeparator: this.#thousandSeparator,
+        useThousandSeparator: this.showThousandSeparator,
+        showPersianNumber: this.#showPersianNumber
       }
     );
   }
@@ -278,7 +278,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     const step = this.#step;
     const newNumber = this.#addFloatNumber(currentNumber, step);
     this.value = `${newNumber}`;
-    this.validation.checkValidity({showError:true});
+    this.validation.checkValidity({ showError: true });
     if (shouldCallOnChange) {
       this.#dispatchOnChangeEvent();
     }
@@ -302,7 +302,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       newNumber = 0;
     }
     this.value = `${newNumber}`;
-    this.validation.checkValidity({showError:true});
+    this.validation.checkValidity({ showError: true });
     if (shouldCallOnChange) {
       this.#dispatchOnChangeEvent();
     }
@@ -344,8 +344,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     const startCaretPos = (e.target as HTMLInputElement).selectionStart || 0;
     let isPreventDefault = false;
     // we check number input type field and prevent non number values
-    if (this.getAttribute("type") == "number" &&
-      e.inputType !== "deleteContentBackward" && !isStringIsNumber(e.data)) {
+    if (e.inputType !== "deleteContentBackward" && !isStringIsNumber(e.data)) {
       isPreventDefault = true;
       // we made exception for . char if its valid by user
       if (
@@ -362,11 +361,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         isPreventDefault = false;
       }
       //for '-' char we check if negative number is allowed
-      if (
-        this.#numberFieldParameters &&
-        this.#numberFieldParameters.acceptNegative &&
-        e.data == "-" &&
-        (startCaretPos == 0 || endCaretPos == 0)
+      if (this.#numberFieldParameters.acceptNegative && e.data[0] == "-" && (startCaretPos == 0)
       ) {
         isPreventDefault = false;
       }
