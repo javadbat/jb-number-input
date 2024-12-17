@@ -11,9 +11,11 @@
     "jb-number-input",
     "number input",
     "number",
+    "عدد",
+    "کامپوننت عدد",
     "web component"
   ],
-  "version": "1.2.7",
+  "version": "1.2.8",
   "bugs": "https://github.com/javadbat/jb-number-input/issues",
   "license": "MIT",
   "files": [
@@ -31,7 +33,7 @@
 		"url": "git@github.com:javadbat/jb-number-input.git"
   },
   "dependencies": {
-    "jb-input": ">=3.4.9",
+    "jb-input": ">=3.5.0",
     "jb-validation":">=0.2.0"
   }
 }

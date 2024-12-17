@@ -3,7 +3,7 @@ import NumberInputButtonsHTML from "./number-input-buttons.html";
 import "jb-input";
 import { type NumberFieldParameter, type NumberInputElements } from './types';
 // eslint-disable-next-line no-duplicate-imports
-import { JBInputWebComponent, type JBInputValue } from "jb-input";
+import { JBInputWebComponent, ValueSetterEventType, type JBInputValue } from "jb-input";
 //TODO: update it when you move validation to core package
 import { type ValidationItem } from "jb-validation";
 import { isNumberValidator } from "./validation";
@@ -189,9 +189,18 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       this.onAttributeChange(name, newValue);
     }
   }
-  #standardNumberValue(valueString: string): JBInputValue {
-    const standardValue = this.#getNumberValueString(valueString);
-    return standardValue;
+  #standardNumberValue(valueString: string, oldValue:JBInputValue, prevResult:JBInputValue, eventType:ValueSetterEventType ): JBInputValue {
+    return standardValueForNumberInput(
+      valueString,
+      this.#numberFieldParameters,
+      {
+        invalidNumberReplacement: this.#invalidNumberReplacement,
+        thousandSeparator: this.#thousandSeparator,
+        useThousandSeparator: this.showThousandSeparator,
+        showPersianNumber: this.#showPersianNumber
+      },
+      eventType
+    );
   }
   #onNumberInputAttributeChange(name: string, value: string) {
     switch (name) {
@@ -235,18 +244,6 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         break;
 
     }
-  }
-  #getNumberValueString(rawText: string) {
-    return standardValueForNumberInput(
-      rawText,
-      this.#numberFieldParameters,
-      {
-        invalidNumberReplacement: this.#invalidNumberReplacement,
-        thousandSeparator: this.#thousandSeparator,
-        useThousandSeparator: this.showThousandSeparator,
-        showPersianNumber: this.#showPersianNumber
-      }
-    );
   }
   #getNumberInputValidations(): ValidationItem<JBInputValue>[] {
     return [isNumberValidator];
