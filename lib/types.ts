@@ -1,4 +1,4 @@
-import { EventTypeWithTarget } from "jb-input";
+import { EventTypeWithTarget } from "jb-core";
 import { JBNumberInputWebComponent } from "./jb-number-input";
 
 export type NumberFieldParameter = {
