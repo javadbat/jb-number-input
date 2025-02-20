@@ -1,4 +1,4 @@
-import { enToFaDigits, faToEnDigits } from "../../../common/scripts/persian-helper";
+import { enToFaDigits, faToEnDigits } from "jb-core";
 import { ValueSetterEventType, type JBInputValue } from "jb-input";
 import { type TypeParameter, type NumberFieldParameter } from "./types";
 
