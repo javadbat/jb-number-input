@@ -1,13 +1,13 @@
 import CSS from "./jb-number-input.scss";
 import NumberInputButtonsHTML from "./number-input-buttons.html";
 import "jb-input";
-import { type NumberFieldParameter, type NumberInputElements } from './types';
+import { type NumberFieldParameter, type NumberInputElements } from './types.js';
 // eslint-disable-next-line no-duplicate-imports
 import { JBInputWebComponent, ValueSetterEventType, type JBInputValue } from "jb-input";
 //TODO: update it when you move validation to core package
 import { type ValidationItem } from "jb-validation";
 import { isNumberValidator } from "./validation";
-import { isStringIsNumber, standardValueForNumberInput } from "./utils";
+import { isStringIsNumber, standardValueForNumberInput } from "./utils.js";
 
 export * from "./types.js";
 

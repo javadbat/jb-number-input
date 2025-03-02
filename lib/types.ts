@@ -1,5 +1,5 @@
-import { EventTypeWithTarget } from "jb-core";
-import { JBNumberInputWebComponent } from "./jb-number-input";
+import type { EventTypeWithTarget } from "jb-core";
+import type { JBNumberInputWebComponent } from "./jb-number-input";
 
 export type NumberFieldParameter = {
     decimalPrecision:number | null;

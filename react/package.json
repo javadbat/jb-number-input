@@ -24,7 +24,7 @@
     "dist/"
   ],
   "main": "index.js",
-  "types": "./dist/web-component/jb-number-input/react/lib/JBNumberInput.d.ts",
+  "types": "./dist/JBNumberInput.d.ts",
   "repository": {
 		"type": "git",
 		"url": "git@github.com:javadbat/jb-number-input-react.git"

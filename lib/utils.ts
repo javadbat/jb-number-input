@@ -15,7 +15,7 @@ export function standardValueForNumberInput(inputValueString: string, numberFiel
   if (typeParameter.useThousandSeparator) {
     valueString = valueString.replace(new RegExp(`${typeParameter.thousandSeparator}`, 'g'), '');
   }
-  const isNegativeNumber = valueString.at(0) == '-';
+  const isNegativeNumber = valueString[0] == '-';
   //remove all unrelated char from value
   valueString = faToEnDigits(valueString).replace(/[^0-9.]/g, '');
   if (isNegativeNumber && numberFieldParameters.acceptNegative) {
