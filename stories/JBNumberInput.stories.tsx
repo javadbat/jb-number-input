@@ -70,6 +70,13 @@ export const NumberWithPersianChar: Story = {
   }
 };
 
+export const WithError: Story = {
+  args: {
+    label: 'show error',
+    error: 'error message',
+  }
+};
+
 export const numberTest: Story = {
   render: () => <JBInputNumberTest></JBInputNumberTest>,
 };

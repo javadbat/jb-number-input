@@ -46,7 +46,10 @@ export function standardValueForNumberInput(inputValueString: string, numberFiel
       valueString = `${numberFieldParameters.minValue}`;
     }
   }
-
+  //remove end . if user not typing
+  if(eventType !=="INPUT" && valueString.endsWith('.')){
+    valueString = valueString.substring(0,valueString.length-1);
+  }
   const [integerNumbers, decimalNumbers] = valueString.split('.');
 
   const decimalPrecisionCount = decimalNumbers ? decimalNumbers.length : 0;
@@ -65,13 +68,17 @@ export function standardValueForNumberInput(inputValueString: string, numberFiel
   if (integerNumbers.startsWith('-') && integerNumbers.charAt(1) == '0' && integerNumbers.length > 2) {
     valueString = '-' + valueString.substring(2);
   }
+  //remove end zero when number is decimal 65.00 => 65
+  if(eventType !== "INPUT" && decimalNumbers && decimalNumbers.endsWith('0')){
+    valueString = valueString.replace(/(\.\d*?[1-9])0+|\.0+$/, '$1');
+  }
   const standardValueObject: JBInputValue = {
     displayValue: valueString,
     value: valueString,
   };
   // add thousand separator comma
   if (typeParameter.useThousandSeparator) {
-    standardValueObject.displayValue = valueString.replace(/\B(?=(\d{3})+(?!\d))/g, typeParameter.thousandSeparator);
+    standardValueObject.displayValue = valueString.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, typeParameter.thousandSeparator);
   }
   //convert en number to persian number
   if (typeParameter.showPersianNumber) {

@@ -8,7 +8,9 @@ benefits:
 - with  +- button
 - with keyboard support for up and down value with customizable step
 - with preventable negative value.
-- with min & max value.
+- with min & max value control.
+- support persian numbers.
+- can handle wrong user inputted value ex: 100.00=>100 , 50.=>50
 
 
 Demo: [codepen](https://codepen.io/javadbat/pen/gONgKRw)

@@ -157,7 +157,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   }
   #addNumberInputEventListeners() {
     this.elements.input.addEventListener("beforeinput", this.#onNumberInputBeforeInput.bind(this));
-    this.elements.input.addEventListener("keydown", this.#onNumberInputKeyDown.bind(this));
+    this.addEventListener("keydown", this.#onNumberInputKeyDown.bind(this));
   }
   #initNumberInputWebComponent() {
     const html = `<style>${CSS}</style>`;
