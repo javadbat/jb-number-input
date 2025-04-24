@@ -1,3 +1,5 @@
+@use './variables.css';
+
 .jb-input-web-component {
     --jb-input-input-direction: var(--jb-number-input-input-direction, ltr);
 
@@ -5,7 +7,7 @@
         .number-control-buttons {
             display: flex;
             height: 100%;
-
+            cursor: pointer;
             .number-control-button {
                 width: var(--jb-number-input-button-width, 36px);
                 height: 100%;
@@ -20,7 +22,7 @@
                 box-sizing: border-box;
 
                 .increase-icon {
-                    stroke: var(--jb-number-input-increase-button-color, #bbb);
+                    stroke: var(--increase-button-color);
                     stroke-width: 14px;
                     height: 100%;
                     width: 100%;
@@ -29,7 +31,7 @@
 
                 &:hover {
                     .increase-icon {
-                        stroke: var(--jb-number-input-increase-button-color-hover, #00b600);
+                        stroke: var(--increase-button-color-hover);
                     }
                 }
             }
@@ -41,7 +43,7 @@
                 box-sizing: border-box;
 
                 .decrease-icon {
-                    stroke: var(--jb-number-input-decrease-button-color, #bbb);
+                    stroke: var(--decrease-button-color);
                     stroke-width: 14px;
                     height: 100%;
                     width: 100%;
@@ -50,7 +52,7 @@
 
                 &:hover {
                     .decrease-icon {
-                        stroke: var(--jb-number-input-decrease-button-color-hover, #ff1026);
+                        stroke: var(--decrease-button-color-hover);
                     }
                 }
             }

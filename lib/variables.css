@@ -1,0 +1,6 @@
+:host{
+  --increase-button-color:var(--jb-number-input-increase-button-color, var(--jb-neutral-7));
+  --increase-button-color-hover:var(--jb-number-input-increase-button-color-hover, oklch(from var(--jb-green) calc(l + 0.07) calc(c + 0.07) h));
+  --decrease-button-color:var(--jb-number-input-decrease-button-color, var(--jb-neutral-7));
+  --decrease-button-color-hover:var(--jb-number-input-decrease-button-color-hover, oklch(from var(--jb-red) calc(l + 0.07) calc(c + 0.07) h))
+}
