@@ -4,7 +4,7 @@ import JBInputNumberTest from './samples/JBInputNumberTest';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<Props> = {
-  title: "Example/form elements/Inputs/JBNumberInput",
+  title: "Components/form elements/Inputs/JBNumberInput",
   component: JBNumberInput,
 };
 export default meta;

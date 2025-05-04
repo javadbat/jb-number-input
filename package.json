@@ -33,7 +33,7 @@
 		"url": "git@github.com:javadbat/jb-number-input.git"
   },
   "dependencies": {
-    "jb-input": ">=3.10.0",
+    "jb-input": ">=3.11.0",
     "jb-validation":">=0.4.0",
     "jb-core":">=0.10.0"
   }
