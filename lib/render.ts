@@ -1,4 +1,6 @@
-<div class="number-control-buttons">
+export function renderButtonsHTML(): string {
+  return /* html */ `
+  <div class="number-control-buttons">
     <div class="increase-number-button number-control-button">
         <svg class="increase-icon" viewBox="0 0 120 120">
             <path  stroke-linecap="round" d="M60,40 L60,80"></path>
@@ -10,4 +12,6 @@
             <path  stroke-linecap="round" d="M40,60 L80,60"></path>
         </svg>
     </div>
-</div>
+  </div>
+  `;
+}

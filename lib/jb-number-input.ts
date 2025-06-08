@@ -1,5 +1,4 @@
 import CSS from "./jb-number-input.scss";
-import NumberInputButtonsHTML from "./number-input-buttons.html";
 import "jb-input";
 import { type NumberFieldParameter, type NumberInputElements } from './types.js';
 // eslint-disable-next-line no-duplicate-imports
@@ -8,6 +7,7 @@ import { JBInputWebComponent, ValueSetterEventType, type JBInputValue } from "jb
 import { type ValidationItem } from "jb-validation";
 import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils.js";
+import { renderButtonsHTML } from "./render";
 
 export * from "./types.js";
 
@@ -307,7 +307,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   #addControlButtons() {
     const buttonsElement = document.createElement("div");
     buttonsElement.classList.add("number-control-wrapper");
-    buttonsElement.innerHTML = NumberInputButtonsHTML;
+    buttonsElement.innerHTML = renderButtonsHTML();
     buttonsElement
       .querySelector(".increase-number-button")!
       .addEventListener("click", this.increaseNumber.bind(this, true));
