@@ -1,16 +1,17 @@
+'use client';
 import React ,{ useRef, useEffect, useImperativeHandle, useState, type DetailedHTMLProps, type HTMLAttributes,forwardRef } from 'react';
 import 'jb-number-input';
 // eslint-disable-next-line no-duplicate-imports
 import {type JBNumberInputWebComponent } from 'jb-number-input';
 import {BaseProps, useJBInputAttribute, useJBInputEvents} from 'jb-input/react';
 
-declare global {
+declare module "react" {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
         interface IntrinsicElements {
             'jb-number-input': JBNumberInputType;
         }
-        interface JBNumberInputType extends DetailedHTMLProps<HTMLAttributes<JBNumberInputWebComponent>, JBNumberInputWebComponent> {
+        interface JBNumberInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBNumberInputWebComponent>, JBNumberInputWebComponent> {
             class?: string,
             label?: string,
             name?: string,
