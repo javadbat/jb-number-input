@@ -1,11 +1,13 @@
-# jb-number-input-react
+# jb-number-input React component
 
 this is a superset component on [jb-number-input](https://github.com/javadbat/jb-number-input) just for react.
 it's also use [jb-input/react](https://github.com/javadbat/jb-input-react) for standard input props and styles    
 
-Demo: [codeSandbox preview](https://3f63dj.csb.app/samples/jb-number-input) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBNumberInput.tsx) if you want to see and play with code    
+## Demo
 
-Demo: [stackblitz](https://stackblitz.com/edit/jb-number-input-react?file=src%2FApp.tsx)    
+-[codeSandbox preview](https://3f63dj.csb.app/samples/jb-number-input) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBNumberInput.tsx) if you want to see and play with code
+-[stackblitz](https://stackblitz.com/edit/jb-number-input-react?file=src%2FApp.tsx)    
+-[storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbnumberinput)
 
 ## instructions
 
@@ -14,7 +16,8 @@ Demo: [stackblitz](https://stackblitz.com/edit/jb-number-input-react?file=src%2F
 #### using npm
 
 1- install npm package
-```cmd
+
+```sh
 npm i jb-number-input
 ```
 

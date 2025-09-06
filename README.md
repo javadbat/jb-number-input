@@ -12,8 +12,10 @@ benefits:
 - support persian numbers.
 - can handle wrong user inputted value ex: 100.00=>100 , 50.=>50
 
+## Demo
 
-Demo: [codepen](https://codepen.io/javadbat/pen/gONgKRw)
+- [codepen](https://codepen.io/javadbat/pen/gONgKRw)
+- [storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbnumberinput)
 
 ## using with JS frameworks
 
@@ -26,7 +28,8 @@ to use this component in **react** see [`jb-number-input/react`](https://github.
 #### using npm
 
 1- install npm package
-```cmd
+
+```sh
 npm i jb-number-input
 ```
 
