@@ -1,4 +1,5 @@
-import CSS from "./jb-number-input.scss";
+import CSS from "./jb-number-input.css";
+import VariablesCSS from "./variables.css";
 import "jb-input";
 import { type NumberFieldParameter, type NumberInputElements } from './types.js';
 // eslint-disable-next-line no-duplicate-imports
@@ -160,7 +161,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     this.addEventListener("keydown", this.#onNumberInputKeyDown.bind(this));
   }
   #initNumberInputWebComponent() {
-    const html = `<style>${CSS}</style>`;
+    const html = `<style>${CSS} ${VariablesCSS}</style>`;
     const element = document.createElement("template");
     element.innerHTML = html;
     this.shadowRoot.appendChild(element.content.cloneNode(true));

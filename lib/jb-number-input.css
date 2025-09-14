@@ -1,5 +1,3 @@
-@use './variables.css';
-
 .jb-input-web-component {
     --jb-input-input-direction: var(--jb-number-input-input-direction, ltr);
 
@@ -11,7 +9,6 @@
             .number-control-button {
                 width: var(--jb-number-input-button-width, 36px);
                 height: 100%;
-                //background-color: red;
                 text-align: center;
             }
 
