@@ -6,11 +6,13 @@ export const webComponentList: WebComponentBuildConfig[] = [
     path: "./lib/jb-number-input.ts",
     outputPath: "./dist/jb-number-input.js",
     umdName: "JBNumberInput",
-    external: ["jb-input", "jb-validation", "jb-core"],
+    external: ["jb-input", "jb-validation", "jb-core", "jb-core/theme","jb-core/i18n"],
     globals: {
       "jb-input": "JBInput",
       "jb-validation": "JBValidation",
-      "jb-core":"JBCore"
+      "jb-core":"JBCore",
+      "jb-core/theme":"JBCoreTheme",
+      "jb-core/i18n": "jb-coreI18N"
     },
   },
 ];
