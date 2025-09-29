@@ -22,8 +22,8 @@ export const Normal: Story = {
 
 export const NumberWithComma: Story = {
   args: {
-    label: 'تعداد به عدد',
-    message: 'هر سه رقم با کاما جدا میگردند',
+    label: 'with thousand separator',
+    message: 'type a big number. each 3 number will separated by a comma',
     showThousandSeparator: true,
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
   }
@@ -31,18 +31,18 @@ export const NumberWithComma: Story = {
 
 export const NumberWithMinMax: Story = {
   args: {
-    label: 'تعداد به عدد',
-    message: 'عدد بین 100 تا 10000',
+    label: 'with min 100 & max 1000',
+    message: 'type smaller or larger number, after un-focus it will turn to max or min(it does not prevent user from typing)',
     maxValue: 10000,
     minValue: 100,
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
   }
 };
 
-export const NonNegativeNumberWithUnderlineSeparato: Story = {
+export const NonNegativeNumberWithUnderlineSeparator: Story = {
   args: {
-    label: 'تعداد به عدد',
-    message: 'هر سه رقم با خط تیره جدا میگردند',
+    label: 'non-negative number with underline separator',
+    message: 'each 3 digit separated by _',
     acceptNegative: false,
     showThousandSeparator: true,
     thousandSeparator: '_',
@@ -51,9 +51,8 @@ export const NonNegativeNumberWithUnderlineSeparato: Story = {
 };
 export const NumberWithButtons: Story = {
   args: {
-    label: 'عددی با دکمه',
-    message: 'دکمه های +-',
-    type: 'number',
+    label: 'with increase and decrease button',
+    message: 'with +- buttons',
     showControlButton: true,
     step: 100,
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
@@ -64,7 +63,6 @@ export const NumberWithPersianChar: Story = {
   args: {
     label: 'type number',
     message: 'type en number but user see persian char number',
-    type: 'number',
     showPersianNumber: true,
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
   }
