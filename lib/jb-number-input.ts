@@ -9,6 +9,7 @@ import { type ValidationItem } from "jb-validation";
 import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils.js";
 import { renderButtonsHTML } from "./render";
+import { i18n } from "jb-core/i18n";
 
 export * from "./types.js";
 
@@ -119,7 +120,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     this.value = `${this.value}`;
   }
   //will show persian number even if user type en number but value will be passed as en number
-  #showPersianNumber = false;
+  #showPersianNumber = i18n.locale.numberingSystem == "arabext";
   get showPersianNumber() {
     return this.#showPersianNumber;
   }
