@@ -1,9 +1,11 @@
 'use client';
-import React ,{ useRef, useEffect, useImperativeHandle, useState, type DetailedHTMLProps, type HTMLAttributes,forwardRef } from 'react';
+// biome-ignore lint/style/useImportType: <we need react to define>
+import React from 'react';
+import { useRef, useImperativeHandle,forwardRef } from 'react';
 import 'jb-number-input';
 // eslint-disable-next-line no-duplicate-imports
-import {type JBNumberInputWebComponent } from 'jb-number-input';
-import {BaseProps, useJBInputAttribute, useJBInputEvents} from 'jb-input/react';
+import type {JBNumberInputWebComponent } from 'jb-number-input';
+import {type BaseProps, useJBInputAttribute, useJBInputEvents} from 'jb-input/react';
 
 declare module "react" {
     // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -23,69 +25,23 @@ declare module "react" {
 // eslint-disable-next-line react/display-name
 export const JBNumberInput = forwardRef<JBNumberInputWebComponent | undefined,Props>((props: Props, ref) => {
   const element = useRef<JBNumberInputWebComponent>(null);
-  const [refChangeCount, refChangeCountSetter] = useState(0);
   useImperativeHandle(
     ref,
     () => (element ? element.current : undefined),
     [element],
   );
-  //to force rerender for events
-  useEffect(() => {
-    refChangeCountSetter(refChangeCount + 1);
-  }, [element.current]);
-  useJBInputAttribute(element,props);
-  useJBInputEvents<JBNumberInputWebComponent>(element,props);
-  useEffect(() => {
-    if(element?.current){
-      element.current.minValue = props.minValue;
-    }
-  }, [props.minValue]);
-  useEffect(() => {
-    if(element.current){
-      element.current.maxValue = props.maxValue;
-    }
-  }, [props.maxValue]);
-  useEffect(() => {
-    if(element.current && props.acceptNegative !== undefined){
-      element.current.acceptNegative = props.acceptNegative;
-    }
-  }, [props.acceptNegative]);
-  useEffect(() => {
-    if(element.current){
-      element.current.decimalPrecision = props.decimalPrecision;
-    }
-  }, [props.decimalPrecision]);
-  useEffect(() => {
-    if (element.current && typeof props.showControlButton == "boolean") {
-      element.current.showControlButton = props.showControlButton;
-    }
-  }, [props.showControlButton]);
-  useEffect(() => {
-    if (element.current && typeof props.showThousandSeparator == "boolean") {
-      element.current.showThousandSeparator = props.showThousandSeparator;
-    }
-  }, [props.showThousandSeparator]);
-  useEffect(() => {
-    if (element.current && typeof props.thousandSeparator == "string") {
-      element.current.thousandSeparator = props.thousandSeparator;
-    }
-  },[props.thousandSeparator]);
-  useEffect(() => {
-    if (element.current && typeof props.step == "number") {
-      element.current.step = props.step;
-    }
-  }, [props.step]);
-  useEffect(() => {
-    if (element.current && typeof props.showPersianNumber == "boolean") {
-      element.current.showPersianNumber = props.showPersianNumber;
-    }
-  }, [props.showPersianNumber]);
+  // these props passed as ...otherProps to component for shorter code: minValue,maxValue,acceptNegative,decimalPrecision,showControlButton,showThousandSeparator,thousandSeparator,step,showPersianNumber
+  const {disabled,required,validationList,value,onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup, children, ...otherProps} = props;
+  useJBInputAttribute(element,{disabled,required,validationList,value,...otherProps});
+  useJBInputEvents<JBNumberInputWebComponent>(element,{onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup,...otherProps});
+
   return (
-    <jb-number-input ref={element} class={props.className}>
+    <jb-number-input ref={element} {...otherProps}>
       {props.children}
     </jb-number-input>
   );
 });
+
 export type Props = BaseProps<JBNumberInputWebComponent> & {
     minValue?:number,
     maxValue?:number,
@@ -97,5 +53,6 @@ export type Props = BaseProps<JBNumberInputWebComponent> & {
     showPersianNumber?:boolean,
     showControlButton?:boolean
 }
+
 JBNumberInput.displayName = "JBNumberInput";
 

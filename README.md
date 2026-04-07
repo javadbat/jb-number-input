@@ -116,8 +116,6 @@ you can also set this values by html attributes:
 />
 ```
 
-
-
 ### set custom style
 
 in some cases in your project you need to change default style of web-component for example you need zero margin or different border-radius and etc.    
