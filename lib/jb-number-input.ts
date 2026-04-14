@@ -1,11 +1,11 @@
 import CSS from "./jb-number-input.css";
 import VariablesCSS from "./variables.css";
 import "jb-input";
-import { type NumberFieldParameter, type NumberInputElements } from './types.js';
+import type { NumberFieldParameter, NumberInputElements } from './types.js';
 // eslint-disable-next-line no-duplicate-imports
-import { JBInputWebComponent, ValueSetterEventType, type JBInputValue } from "jb-input";
+import { JBInputWebComponent, type ValueSetterEventType, type JBInputValue } from "jb-input";
 //TODO: update it when you move validation to core package
-import { type ValidationItem } from "jb-validation";
+import type { ValidationItem } from "jb-validation";
 import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils.js";
 import { renderButtonsHTML } from "./render";
@@ -27,7 +27,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   get minValue() {
     return this.#numberFieldParameters.minValue;
   }
-  set minValue(value: number | string) {
+  set minValue(value: number | string | null) {
     if (value === undefined || value === null) {
       this.#numberFieldParameters.minValue = null;
       return;
@@ -43,7 +43,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   get maxValue() {
     return this.#numberFieldParameters.maxValue;
   }
-  set maxValue(value: number | string) {
+  set maxValue(value: number | string | null) {
     if (value === undefined || value === null) {
       this.#numberFieldParameters.maxValue = null;
       return;
@@ -59,7 +59,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   get decimalPrecision() {
     return this.#numberFieldParameters.decimalPrecision;
   }
-  set decimalPrecision(value: number | string) {
+  set decimalPrecision(value: number | string | null) {
     if (value === undefined || value === null) {
       this.#numberFieldParameters.decimalPrecision = null;
       return;
@@ -80,8 +80,8 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     this.#numberFieldParameters.acceptNegative = Boolean(value);
   }
   //how many step number increase or decrease on + , - or arrow up , arrow down
-  #step = 1;
-  get step() {
+  #step:null|number = 1;
+  get step():number|null{
     return this.#step;
   }
   set step(value: number) {
@@ -165,7 +165,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     const html = `<style>${CSS} ${VariablesCSS}</style>`;
     const element = document.createElement("template");
     element.innerHTML = html;
-    this.shadowRoot.appendChild(element.content.cloneNode(true));
+    this.shadowRoot?.appendChild(element.content.cloneNode(true));
     this.validation.addValidationListGetter(this.#getNumberInputValidations.bind(this));
     this.elements.input.inputMode = "numeric";
     this.numberInputElements = {
@@ -183,7 +183,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       ...JBNumberInputWebComponent.numberInputObservedAttributes
     ];
   }
-  attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+  attributeChangedCallback(name: string, _oldValue: string, newValue: string): void {
     // call base jb-input on attribute changes
     if ([...JBNumberInputWebComponent.numberInputObservedAttributes, 'type'].includes(name)) {
       this.#onNumberInputAttributeChange(name, newValue);
@@ -191,7 +191,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       this.onAttributeChange(name, newValue);
     }
   }
-  #standardNumberValue(valueString: string, oldValue:JBInputValue, prevResult:JBInputValue, eventType:ValueSetterEventType ): JBInputValue {
+  #standardNumberValue(valueString: string, _oldValue:JBInputValue, _prevResult:JBInputValue, eventType:ValueSetterEventType ): JBInputValue {
     return standardValueForNumberInput(
       valueString,
       this.#numberFieldParameters,
@@ -271,10 +271,10 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   }
   increaseNumber(shouldCallOnChange = false) {
     const currentNumber = Number(this.value);
-    if (isNaN(currentNumber)) {
+    if (Number.isNaN(currentNumber)) {
       return;
     }
-    const step = this.#step;
+    const step = this.#step??1;
     const newNumber = this.#addFloatNumber(currentNumber, step);
     this.value = `${newNumber}`;
     this.validation.checkValidity({ showError: true });
@@ -284,18 +284,15 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   }
   decreaseNumber(shouldCallOnChange = false) {
     const currentNumber = parseFloat(this.value);
-    if (isNaN(currentNumber)) {
+    if (Number.isNaN(currentNumber)) {
       return;
     }
-    const step = this.#numberFieldParameters
-      ? this.#step
-      : 1;
+    const step:number = this.#step??1;
     let newNumber = this.#addFloatNumber(currentNumber, -1 * step);
     if (
       newNumber < 0 &&
       !(
-        this.#numberFieldParameters &&
-        this.#numberFieldParameters.acceptNegative
+        this.#numberFieldParameters?.acceptNegative
       )
     ) {
       newNumber = 0;
@@ -360,7 +357,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         isPreventDefault = false;
       }
       //for '-' char we check if negative number is allowed
-      if (this.#numberFieldParameters.acceptNegative && e.data[0] == "-" && (startCaretPos == 0)
+      if (this.#numberFieldParameters.acceptNegative && e.data?.[0] == "-" && (startCaretPos == 0)
       ) {
         isPreventDefault = false;
       }
