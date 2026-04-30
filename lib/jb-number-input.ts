@@ -14,6 +14,7 @@ import { i18n } from "jb-core/i18n";
 export * from "./types.js";
 
 //TODO: add barcode scanner or nfc reader
+//TODO: add valueAsNumber getter (standard method nor native number input)
 export class JBNumberInputWebComponent extends JBInputWebComponent {
   #numberFieldParameters: NumberFieldParameter = {
     //if input type is number we use this step to change value on +- clicks
