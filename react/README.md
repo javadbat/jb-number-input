@@ -1,5 +1,10 @@
 # jb-number-input React component
 
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-number-input)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-number-input/main/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/jb-number-input-react)](https://www.npmjs.com/package/jb-number-input-react)
+![GitHub Created At](https://img.shields.io/github/created-at/javadbat/jb-number-input)
+
 this is a superset component on [jb-number-input](https://github.com/javadbat/jb-number-input) just for react.
 it's also use [jb-input/react](https://github.com/javadbat/jb-input-react) for standard input props and styles    
 

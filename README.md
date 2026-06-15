@@ -1,9 +1,9 @@
 # jb-number-input
 
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-jb-number-input)
-[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-jb-number-input/main/LICENSE)
-[![NPM Version](https://img.shields.io/npm/v/jb-jb-number-input)](https://www.npmjs.com/package/jb-jb-number-input)
-![GitHub Created At](https://img.shields.io/github/created-at/javadbat/jb-jb-number-input)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/jb-number-input)
+[![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/javadbat/jb-number-input/main/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/jb-number-input)](https://www.npmjs.com/package/jb-number-input)
+![GitHub Created At](https://img.shields.io/github/created-at/javadbat/jb-number-input)
 
 this is a superset component on [jb-input](https://github.com/javadbat/jb-input) , just for number input with extra filter and ready to use validator
 
