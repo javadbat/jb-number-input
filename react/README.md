@@ -16,8 +16,7 @@ it's also use [jb-input/react](https://github.com/javadbat/jb-input-react) for s
 
 ## instructions
 
-### install
-
+### Installation
 #### using npm
 
 1- install npm package
@@ -73,7 +72,7 @@ if you want to control which number user may input, ex: you may want to let user
 ### set custom style
 
 in some cases in your project you need to change default style of web-component for example you need zero margin or different border-radius and etc.    
-if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component.
+if you want to set a custom style to this web-component all you need is to set CSS variable in parent scope of web-component.
 since jb-number-input use jb-input underneath, read [jb-input](https://github.com/javadbat/jb-input) custom style list.
 and [jb-number-input](https://github.com/javadbat/jb-number-input) custom style list for buttons and special number input variables.
 
@@ -84,11 +83,15 @@ if you want to add this buttons you just have to set `showControlButton` of comp
 ```jsx
 <JBNumberInput showControlButton={true}></JBNumberInput>
 ```
-after that if user click on the `+` or `-` value will increase or decrease base on the step you set in `step`(default is 1).    
+after that if user click on the `+` or `-` value will increase or decrease based on the step you set in `step`(default is 1).    
 click on `+` `-` button will call `onChange` event.
 
-## Other Related Docs:
 
+## Shared Documentation
+
+For web-component behavior, events, slots, and CSS variables, see [`jb-number-input`](https://github.com/javadbat/jb-number-input).
+
+## Related Docs
 - see [jb-number-input](https://github.com/javadbat/jb-number-input) if you want to use this component as a pure-js web-component
 
 - see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components

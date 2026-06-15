@@ -22,13 +22,23 @@ benefits:
 - [codepen](https://codepen.io/javadbat/pen/gONgKRw)
 - [storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbnumberinput)
 
-## using with JS frameworks
-
+## Using With JS Frameworks
 - [<img src="https://img.shields.io/badge/React.js-jb--number--input%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" />](https://github.com/javadbat/jb-number-input/tree/main/react)
 
 ## instructions
 
-### install
+### Installation
+
+## Attributes/Properties
+
+| name | type | description |
+| --- | --- | --- |
+| `value` | property/attribute | Current numeric value. |
+| `min` | attribute/property | Minimum accepted value. |
+| `max` | attribute/property | Maximum accepted value. |
+| `step` | attribute/property | Increment/decrement step. |
+| `show-control-button` | attribute | Shows increment and decrement buttons. |
+| `change` | event | Fired when the value changes. |
 
 #### using npm
 
@@ -124,8 +134,12 @@ you can also set this values by html attributes:
 ### set custom style
 
 in some cases in your project you need to change default style of web-component for example you need zero margin or different border-radius and etc.    
-if you want to set a custom style to this web-component all you need is to set css variable in parent scope of web-component.
-since jb-payment-input use jb-input underneath, read [jb-input](https://github.com/javadbat/jb-input) custom style list.
+if you want to set a custom style to this web-component all you need is to set CSS variable in parent scope of web-component.
+since jb-number-input uses jb-input underneath, read [jb-input](https://github.com/javadbat/jb-input) custom style list.
+
+## Styling Dependencies
+
+`jb-number-input` uses `jb-input` internally. `jb-input` CSS variables also apply when styling the number input.
 
 | variable                                       | description |
 |------------------------------------------------|-------------|
@@ -155,11 +169,10 @@ or you can set `show-control-button` attribute
 <jb-number-input show-control-button="true">
 <jb-number-input show-control-button="false">
 ```
-after that if user click on the `+` or `-` value will increase or decrease base on the step you set in `step` attribute(default is 1).    
+after that if user click on the `+` or `-` value will increase or decrease based on the step you set in `step` attribute(default is 1).    
 click on `+` `-` button will call `onChange` event.
 
-## Other Related Docs:
-
+## Related Docs
 - see [jb-number-input/react](https://github.com/javadbat/jb-number-input/tree/main/react) if you want to use this component in a react app.
 
 - see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components
