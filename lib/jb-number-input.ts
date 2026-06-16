@@ -326,11 +326,11 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     //handle up and down on number key
     const key = e.key;
     if (key == "ArrowUp") {
-      this.increaseNumber(false);
+      this.increaseNumber(true);
       e.preventDefault();
     }
     if (key == "ArrowDown") {
-      this.decreaseNumber(false);
+      this.decreaseNumber(true);
       e.preventDefault();
     }
 

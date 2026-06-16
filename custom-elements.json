@@ -1,0 +1,285 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "README.md",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "lib/jb-number-input.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Number-focused extension of jb-input with numeric standardization, validation, thousand separators, Persian digit display, step controls, and optional increase/decrease buttons.",
+          "name": "JBNumberInputWebComponent",
+          "tagName": "jb-number-input",
+          "customElement": true,
+          "superclass": {
+            "name": "JBInputWebComponent",
+            "module": "jb-input"
+          },
+          "attributes": [
+            {
+              "name": "min",
+              "description": "Minimum value used during non-input standardization.",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "name": "max",
+              "description": "Maximum value used during non-input standardization.",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "name": "step",
+              "description": "Amount added or removed by ArrowUp, ArrowDown, and control buttons.",
+              "type": {
+                "text": "number"
+              },
+              "default": "1"
+            },
+            {
+              "name": "decimal-precision",
+              "description": "Maximum allowed decimal digits. Null means no explicit precision limit.",
+              "type": {
+                "text": "number"
+              }
+            },
+            {
+              "name": "accept-negative",
+              "description": "Allows negative values. Empty attribute and true mean true; false means false.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "true"
+            },
+            {
+              "name": "show-control-button",
+              "description": "Shows increment and decrement buttons in the end section.",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false"
+            },
+            {
+              "name": "thousand-separator",
+              "description": "Enables display separators. Empty attribute and true use comma; a custom string is used as the separator; false disables it.",
+              "type": {
+                "text": "boolean | string"
+              },
+              "default": "false"
+            },
+            {
+              "name": "show-persian-number",
+              "description": "Displays Persian digits while keeping value in English digits.",
+              "type": {
+                "text": "boolean"
+              }
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "minValue",
+              "description": "Minimum value used during non-input standardization.",
+              "type": {
+                "text": "number | null"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "maxValue",
+              "description": "Maximum value used during non-input standardization.",
+              "type": {
+                "text": "number | null"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "decimalPrecision",
+              "description": "Maximum allowed decimal digits.",
+              "type": {
+                "text": "number | null"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "acceptNegative",
+              "description": "Allows negative values.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "step",
+              "description": "Amount added or removed by ArrowUp, ArrowDown, and control buttons.",
+              "type": {
+                "text": "number | null"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showThousandSeparator",
+              "description": "Enables or disables display separators.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "thousandSeparator",
+              "description": "Character used when showThousandSeparator is true.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showPersianNumber",
+              "description": "Displays Persian digits while keeping value standardized.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "invalidNumberReplacement",
+              "description": "Replacement text used when a pasted or programmatic value cannot be parsed as a number.",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "showControlButton",
+              "description": "Shows or hides increment and decrement buttons.",
+              "type": {
+                "text": "boolean"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "numberInputElements",
+              "description": "References to number-input-specific rendered elements.",
+              "type": {
+                "text": "NumberInputElements"
+              }
+            }
+          ],
+          "methods": [
+            {
+              "name": "increaseNumber",
+              "description": "Increases value by step, validates, and optionally dispatches change.",
+              "parameters": [
+                {
+                  "name": "shouldCallOnChange",
+                  "type": {
+                    "text": "boolean"
+                  },
+                  "default": "false"
+                }
+              ]
+            },
+            {
+              "name": "decreaseNumber",
+              "description": "Decreases value by step, validates, and optionally dispatches change.",
+              "parameters": [
+                {
+                  "name": "shouldCallOnChange",
+                  "type": {
+                    "text": "boolean"
+                  },
+                  "default": "false"
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "change",
+              "description": "Inherited from jb-input. Control button clicks and ArrowUp/ArrowDown also dispatch change after updating the value."
+            },
+            {
+              "name": "input",
+              "description": "Inherited from jb-input and dispatched on user edits after value standardization."
+            },
+            {
+              "name": "invalid",
+              "description": "Inherited from jb-input and dispatched when validation fails."
+            }
+          ],
+          "cssProperties": [
+            {
+              "name": "--jb-number-input-input-direction",
+              "description": "Direction of the inner input."
+            },
+            {
+              "name": "--jb-number-input-button-width",
+              "description": "Width of each control button."
+            },
+            {
+              "name": "--jb-number-input-increase-button-bg",
+              "description": "Increase button background."
+            },
+            {
+              "name": "--jb-number-input-decrease-button-bg",
+              "description": "Decrease button background."
+            },
+            {
+              "name": "--jb-number-input-increase-button-border",
+              "description": "Increase button border."
+            },
+            {
+              "name": "--jb-number-input-decrease-button-border",
+              "description": "Decrease button border."
+            },
+            {
+              "name": "--jb-number-input-increase-button-border-radius",
+              "description": "Increase button border radius."
+            },
+            {
+              "name": "--jb-number-input-decrease-button-border-radius",
+              "description": "Decrease button border radius."
+            },
+            {
+              "name": "--jb-number-input-increase-button-color",
+              "description": "Increase icon color."
+            },
+            {
+              "name": "--jb-number-input-decrease-button-color",
+              "description": "Decrease icon color."
+            },
+            {
+              "name": "--jb-number-input-increase-button-color-hover",
+              "description": "Increase icon hover color."
+            },
+            {
+              "name": "--jb-number-input-decrease-button-color-hover",
+              "description": "Decrease icon hover color."
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "JBNumberInputWebComponent",
+          "declaration": {
+            "name": "JBNumberInputWebComponent",
+            "module": "lib/jb-number-input.ts"
+          }
+        },
+        {
+          "kind": "custom-element-definition",
+          "name": "jb-number-input",
+          "declaration": {
+            "name": "JBNumberInputWebComponent",
+            "module": "lib/jb-number-input.ts"
+          }
+        }
+      ]
+    }
+  ]
+}

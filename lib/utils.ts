@@ -37,11 +37,19 @@ export function standardValueForNumberInput(inputValueString: string, numberFiel
   // for the second condition we must let user leave input empty but if he input something we must check min & max
   if (eventType !== "INPUT" && valueString.length !== 0) {
     //add max and min checker to prevent bigger value assignment
-    if (numberFieldParameters.maxValue && value > numberFieldParameters.maxValue) {
+    if (
+      numberFieldParameters.maxValue !== null &&
+      numberFieldParameters.maxValue !== undefined &&
+      value > numberFieldParameters.maxValue
+    ) {
       value = numberFieldParameters.maxValue;
       valueString = `${numberFieldParameters.maxValue}`;
     }
-    if (numberFieldParameters.minValue && value < numberFieldParameters.minValue) {
+    if (
+      numberFieldParameters.minValue !== null &&
+      numberFieldParameters.minValue !== undefined &&
+      value < numberFieldParameters.minValue
+    ) {
       value = numberFieldParameters.minValue;
       valueString = `${numberFieldParameters.minValue}`;
     }

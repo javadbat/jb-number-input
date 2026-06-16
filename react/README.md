@@ -5,95 +5,102 @@
 [![NPM Version](https://img.shields.io/npm/v/jb-number-input-react)](https://www.npmjs.com/package/jb-number-input-react)
 ![GitHub Created At](https://img.shields.io/github/created-at/javadbat/jb-number-input)
 
-this is a superset component on [jb-number-input](https://github.com/javadbat/jb-number-input) just for react.
-it's also use [jb-input/react](https://github.com/javadbat/jb-input-react) for standard input props and styles    
+React wrapper for [`jb-number-input`](https://github.com/javadbat/jb-number-input). It imports and registers the underlying web component and reuses [`jb-input/react`](https://github.com/javadbat/jb-input-react) behavior for shared input props and events.
 
 ## Demo
 
--[codeSandbox preview](https://3f63dj.csb.app/samples/jb-number-input) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBNumberInput.tsx) if you want to see and play with code
--[stackblitz](https://stackblitz.com/edit/jb-number-input-react?file=src%2FApp.tsx)    
--[storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbnumberinput)
+- [CodeSandbox preview](https://3f63dj.csb.app/samples/jb-number-input)
+- [CodeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBNumberInput.tsx)
+- [StackBlitz](https://stackblitz.com/edit/jb-number-input-react?file=src%2FApp.tsx)
+- [Storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbnumberinput)
 
-## instructions
-
-### Installation
-#### using npm
-
-1- install npm package
+## Installation
 
 ```sh
 npm i jb-number-input
 ```
 
-2- import module and use it
+```jsx
+import { JBNumberInput } from 'jb-number-input/react';
+
+<JBNumberInput label="Amount" message="Enter amount" />;
+```
+
+## Props
+
+`JBNumberInput` accepts shared `jb-input/react` props such as `value`, `label`, `message`, `placeholder`, `disabled`, `required`, `validationList`, `onInput`, `onChange`, `onFocus`, `onBlur`, and keyboard events.
+
+| prop | type | description |
+| --- | --- | --- |
+| `minValue` | `number` | Minimum value used during non-input standardization. |
+| `maxValue` | `number` | Maximum value used during non-input standardization. |
+| `step` | `number` | Amount added or removed by ArrowUp, ArrowDown, and control buttons. |
+| `decimalPrecision` | `number` | Maximum allowed decimal digits. |
+| `acceptNegative` | `boolean` | Allows negative values. |
+| `showControlButton` | `boolean` | Shows increment and decrement buttons. |
+| `showThousandSeparator` | `boolean` | Enables display separators. |
+| `thousandSeparator` | `string` | Character used when `showThousandSeparator` is true. |
+| `showPersianNumber` | `boolean` | Displays Persian digits while keeping `.value` in English digits. |
+
+## Controlled value
 
 ```jsx
-import {JBNumberInput} from 'jb-number-input/react';
+const [value, setValue] = useState('');
 
-<JBNumberInput label="number:" message="subtitle of input box"></JBNumberInput>
-
+<JBNumberInput
+  value={value}
+  onChange={(event) => setValue(event.target.value)}
+/>;
 ```
-### get/set value
 
-```js
-const [value,setValue] = useState("");
-<JBNumberInput value={value} onChange={(e)=>setValue(e.target.value)}></JBNumberInput>
-```
-### Config Number parameters
-
-if you want to control which number user may input, ex: you may want to let user input negative number or add min & max boundary or limit decimal precision. for doing so you can set number field parameter to jb-number-input.    
+## Configure number behavior
 
 ```jsx
-    <JBNumberInput
-        //how many number you want to + or  - on user press buttons or use arrow keys default is 1
-        step={100}
-        // how many decimal input accept default is infinity
-        decimalPrecision={2}
-        // what char replaced to input if user paste some illegal value default is '' (empty string)
-        invalidNumberReplacement={'0'}
-        // separate every 3 number with comma like 1000000 => 1,000,000
-        showThousandSeparator={false}
-        // which char we use to separate thousand number
-        thousandSeparator=','
-        //can input accept negative number or not
-        acceptNegative={true}
-        // max number value user can input. if user input bigger number it will be set to max
-        maxValue= {1000}
-        //min number value user can input. if user input smaller number it will be set to this value.
-        minValue = {1}
-        // will show persian number instead of english number in output but original input value remain in english char
-        //if true and user type 123 and see ۱۲۳ but inputtedDom.value will be 123
-        showPersianNumber={false}
-    ></JBNumberInput>
-  const numberInput = document.getElementByTagName('jb-number-input')
-
+<JBNumberInput
+  // Amount added or removed when the user presses the buttons or ArrowUp/ArrowDown. Default is 1.
+  step={100}
+  // Maximum number of decimal digits. Default is no explicit limit.
+  decimalPrecision={2}
+  // Show a separator every three integer digits, such as 1000000 => 1,000,000.
+  showThousandSeparator
+  // Character used for thousand separation.
+  thousandSeparator=","
+  // Allow negative numbers.
+  acceptNegative={false}
+  // Maximum value. Out-of-range values are normalized after commit or programmatic assignment.
+  maxValue={1000}
+  // Minimum value. Out-of-range values are normalized after commit or programmatic assignment.
+  minValue={1}
+  // Show Persian digits while keeping the submitted value in English digits.
+  showPersianNumber={false}
+/>;
 ```
 
-### set custom style
-
-in some cases in your project you need to change default style of web-component for example you need zero margin or different border-radius and etc.    
-if you want to set a custom style to this web-component all you need is to set CSS variable in parent scope of web-component.
-since jb-number-input use jb-input underneath, read [jb-input](https://github.com/javadbat/jb-input) custom style list.
-and [jb-number-input](https://github.com/javadbat/jb-number-input) custom style list for buttons and special number input variables.
-
-### control Buttons
-you can add `+` and `-` button into your box element for easier access to change the number with just simple click or touch.
-if you want to add this buttons you just have to set `showControlButton` of component:
+## Control buttons
 
 ```jsx
-<JBNumberInput showControlButton={true}></JBNumberInput>
+<JBNumberInput showControlButton step={10} />;
 ```
-after that if user click on the `+` or `-` value will increase or decrease based on the step you set in `step`(default is 1).    
-click on `+` `-` button will call `onChange` event.
 
+Control button clicks and ArrowUp/ArrowDown update the value and dispatch `onChange`.
+
+## Styling
+
+The React component uses the same CSS variables as the web component. For custom style options, see [`jb-number-input`](https://github.com/javadbat/jb-number-input) and inherited [`jb-input`](https://github.com/javadbat/jb-input) styling docs.
 
 ## Shared Documentation
 
-For web-component behavior, events, slots, and CSS variables, see [`jb-number-input`](https://github.com/javadbat/jb-number-input).
+For web-component behavior, events, slots, validation, and CSS variables, see [`jb-number-input`](https://github.com/javadbat/jb-number-input).
 
 ## Related Docs
-- see [jb-number-input](https://github.com/javadbat/jb-number-input) if you want to use this component as a pure-js web-component
 
-- see [All JB Design system Component List](https://javadbat.github.io/design-system/) for more components
+- See [`jb-number-input`](https://github.com/javadbat/jb-number-input) if you want to use this component as a pure JavaScript web component.
+- See [All JB Design System Component List](https://javadbat.github.io/design-system/) for more components.
+- Use [Contribution Guide](https://github.com/javadbat/design-system/blob/main/docs/contribution-guide.md) if you want to contribute to this component.
 
-- use [Contribution Guide](https://github.com/javadbat/design-system/blob/main/docs/contribution-guide.md) if you want to contribute in this component.
+## AI agent notes
+
+- Import `JBNumberInput` from `jb-number-input/react`; the wrapper imports and registers the underlying `jb-number-input` web component.
+- Use React prop names such as `minValue`, `maxValue`, `decimalPrecision`, `acceptNegative`, and `showControlButton`, not web attributes such as `min`, `max`, or `decimal-precision`.
+- Use `event.target.value` for the standardized value. Formatted display text may differ when thousand separators or Persian digit display are enabled.
+- Use `showControlButton` for `+` and `-` controls and set `disabled` separately if the input should not be editable.
