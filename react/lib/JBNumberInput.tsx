@@ -27,12 +27,12 @@ export const JBNumberInput = forwardRef<JBNumberInputWebComponent | undefined,Pr
   const element = useRef<JBNumberInputWebComponent>(null);
   useImperativeHandle(
     ref,
-    () => (element ? element.current : undefined),
+    () => element.current ?? undefined,
     [element],
   );
   // these props passed as ...otherProps to component for shorter code: minValue,maxValue,acceptNegative,decimalPrecision,showControlButton,showThousandSeparator,thousandSeparator,step,showPersianNumber
   const {disabled,required,validationList,value,onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup, children, ...otherProps} = props;
-  useJBInputAttribute(element,{disabled,required,validationList,value,...otherProps});
+  useJBInputAttribute<JBNumberInputWebComponent>(element,{disabled,required,validationList,value,...otherProps});
   useJBInputEvents<JBNumberInputWebComponent>(element,{onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup,...otherProps});
 
   return (
