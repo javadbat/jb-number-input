@@ -1,0 +1,18 @@
+import {Meta, Title, Story, Controls, Stories, Source} from '@storybook/blocks';
+import * as NumberInputStories from './JBNumberInput.stories';
+
+<Meta of={NumberInputStories}/>
+
+<Title>JB Number Input</Title>
+
+Number input component with formatting, min/max handling, control buttons, and custom inline sections.
+
+<Story of={NumberInputStories.NumberWithButtons}/>
+<Controls of={NumberInputStories.NumberWithButtons}/>
+<Source of={NumberInputStories.NumberWithButtons}/>
+
+## Thousand separator
+<Story of={NumberInputStories.NumberWithComma}/>
+
+## Other samples & variants
+<Stories/>
