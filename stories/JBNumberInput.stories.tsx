@@ -1,14 +1,14 @@
 import React from 'react';
-import { JBNumberInput, Props } from 'jb-number-input/react';
+import { JBNumberInput } from 'jb-number-input/react';
 import JBInputNumberTest from './samples/JBInputNumberTest';
 import type { Meta, StoryObj } from '@storybook/react';
 
-const meta: Meta<Props> = {
+const meta = {
   title: "Components/form elements/Inputs/JBNumberInput",
   component: JBNumberInput,
-};
+} satisfies Meta<typeof JBNumberInput>;
 export default meta;
-type Story = StoryObj<typeof JBNumberInput>;
+type Story = StoryObj<typeof meta>;
 
 export const Normal: Story = {
   args: {
