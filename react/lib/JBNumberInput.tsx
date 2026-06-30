@@ -1,27 +1,12 @@
 'use client';
-// biome-ignore lint/style/useImportType: <we need react to define>
 import React from 'react';
 import { useRef, useImperativeHandle,forwardRef } from 'react';
 import 'jb-number-input';
 // eslint-disable-next-line no-duplicate-imports
 import type {JBNumberInputWebComponent } from 'jb-number-input';
 import {type BaseProps, useJBInputAttribute, useJBInputEvents} from 'jb-input/react';
+import './module-declaration.js';
 
-declare module "react" {
-    // eslint-disable-next-line @typescript-eslint/no-namespace
-    namespace JSX {
-        interface IntrinsicElements {
-            'jb-number-input': JBNumberInputType;
-        }
-        interface JBNumberInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBNumberInputWebComponent>, JBNumberInputWebComponent> {
-            class?: string,
-            label?: string,
-            name?: string,
-            message?: string,
-            placeholder?:string,
-        }
-    }
-}
 // eslint-disable-next-line react/display-name
 export const JBNumberInput = forwardRef<JBNumberInputWebComponent | undefined,Props>((props: Props, ref) => {
   const element = useRef<JBNumberInputWebComponent>(null);
