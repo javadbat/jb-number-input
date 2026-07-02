@@ -2,6 +2,13 @@ import React from 'react';
 import { JBNumberInput } from 'jb-number-input/react';
 import JBInputNumberTest from './samples/JBInputNumberTest';
 import type { Meta, StoryObj } from '@storybook/react';
+import { expect, fn, userEvent, waitFor } from 'storybook/test';
+import {
+  getDecreaseButton,
+  getIncreaseButton,
+  getNativeInput,
+  getNumberInput,
+} from './test-utils';
 
 const meta = {
   title: "Components/form elements/Inputs/JBNumberInput",
@@ -17,6 +24,26 @@ export const Normal: Story = {
     placeholder: 'place holder',
     disabled: false,
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
+  },
+  play: async ({ canvasElement }) => {
+    const numberInput = getNumberInput(canvasElement);
+    const nativeInput = getNativeInput(numberInput);
+
+    await userEvent.type(nativeInput, 'abc12.3x4');
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('12.34');
+      expect(numberInput.displayValue).toBe('12.34');
+      expect(nativeInput.value).toBe('12.34');
+      expect(numberInput.reportValidity()).toBe(true);
+    });
+
+    numberInput.value = '45text67';
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('4567');
+      expect(nativeInput.value).toBe('4567');
+    });
   }
 };
 
@@ -26,6 +53,25 @@ export const NumberWithComma: Story = {
     message: 'type a big number. each 3 number will separated by a comma',
     showThousandSeparator: true,
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
+  },
+  play: async ({ canvasElement }) => {
+    const numberInput = getNumberInput(canvasElement);
+    const nativeInput = getNativeInput(numberInput);
+
+    await userEvent.type(nativeInput, '1234567');
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('1234567');
+      expect(numberInput.displayValue).toBe('1,234,567');
+      expect(nativeInput.value).toBe('1,234,567');
+    });
+
+    numberInput.value = '-1234567.89';
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('-1234567.89');
+      expect(nativeInput.value).toBe('-1,234,567.89');
+    });
   }
 };
 
@@ -36,6 +82,31 @@ export const NumberWithMinMax: Story = {
     maxValue: 10000,
     minValue: 100,
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
+  },
+  play: async ({ canvasElement, args }) => {
+    const numberInput = getNumberInput(canvasElement);
+    const nativeInput = getNativeInput(numberInput);
+
+    numberInput.value = '10';
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe(`${args.minValue}`);
+      expect(nativeInput.value).toBe(`${args.minValue}`);
+    });
+
+    numberInput.value = '12000';
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe(`${args.maxValue}`);
+      expect(nativeInput.value).toBe(`${args.maxValue}`);
+    });
+
+    numberInput.value = '500';
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('500');
+      expect(numberInput.reportValidity()).toBe(true);
+    });
   }
 };
 
@@ -47,6 +118,39 @@ export const NonNegativeNumberWithUnderlineSeparator: Story = {
     showThousandSeparator: true,
     thousandSeparator: '_',
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
+  },
+  play: async ({ canvasElement }) => {
+    const numberInput = getNumberInput(canvasElement);
+    const nativeInput = getNativeInput(numberInput);
+
+    await userEvent.type(nativeInput, '-1234567');
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('1234567');
+      expect(nativeInput.value).toBe('1_234_567');
+    });
+
+    await userEvent.keyboard('{ArrowDown}');
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('1234566');
+      expect(nativeInput.value).toBe('1_234_566');
+    });
+
+    numberInput.value = '0';
+    nativeInput.focus();
+    await userEvent.keyboard('{ArrowDown}');
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('0');
+      expect(nativeInput.value).toBe('0');
+    });
+
+    await userEvent.keyboard('{ArrowUp}');
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('1');
+    });
   }
 };
 export const NumberWithButtons: Story = {
@@ -55,7 +159,31 @@ export const NumberWithButtons: Story = {
     message: 'with +- buttons',
     showControlButton: true,
     step: 100,
-    onChange: (e) => { console.log(`new number is ${e.target.value}`); }
+    onChange: fn(),
+  },
+  play: async ({ canvasElement, args }) => {
+    const numberInput = getNumberInput(canvasElement);
+    const nativeInput = getNativeInput(numberInput);
+    const increaseButton = getIncreaseButton(numberInput);
+    const decreaseButton = getDecreaseButton(numberInput);
+
+    numberInput.value = '0';
+
+    await userEvent.click(increaseButton);
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('100');
+      expect(nativeInput.value).toBe('100');
+      expect(args.onChange).toHaveBeenCalled();
+    });
+
+    await userEvent.click(decreaseButton);
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('0');
+      expect(nativeInput.value).toBe('0');
+      expect(args.onChange).toHaveBeenCalledTimes(2);
+    });
   }
 };
 
@@ -65,6 +193,25 @@ export const NumberWithPersianChar: Story = {
     message: 'type en number but user see persian char number',
     showPersianNumber: true,
     onChange: (e) => { console.log(`new number is ${e.target.value}`); }
+  }, 
+  play: async ({ canvasElement }) => {
+    const numberInput = getNumberInput(canvasElement);
+    const nativeInput = getNativeInput(numberInput);
+
+    await userEvent.type(nativeInput, '1234567');
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('1234567');
+      expect(numberInput.displayValue).toBe('۱۲۳۴۵۶۷');
+      expect(nativeInput.value).toBe('۱۲۳۴۵۶۷');
+    });
+
+    numberInput.value = '9876';
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('9876');
+      expect(nativeInput.value).toBe('۹۸۷۶');
+    });
   }
 };
 
