@@ -26,6 +26,12 @@ import { JBNumberInput } from 'jb-number-input/react';
 <JBNumberInput label="Amount" message="Enter amount" />;
 ```
 
+## When to use
+
+Use `JBNumberInput` when a React form value is numeric and needs number-specific filtering, formatting, validation, Persian digit display, thousand separators, or step controls.
+
+Use `JBInput` for plain text and more specific inputs such as `JBMobileInput`, `JBDateInput`, or `JBPaymentInput` for specialized domain formats.
+
 ## Props
 
 `JBNumberInput` accepts shared `jb-input/react` props such as `value`, `label`, `message`, `placeholder`, `disabled`, `required`, `validationList`, `onInput`, `onChange`, `onFocus`, `onBlur`, and keyboard events.
@@ -84,9 +90,25 @@ const [value, setValue] = useState('');
 
 Control button clicks and ArrowUp/ArrowDown update the value and dispatch `onChange`.
 
+## Thousand separator
+
+Use `showThousandSeparator` and `thousandSeparator` for display formatting. The submitted `event.target.value` remains the standardized English-digit value without separator characters.
+
+## Validation
+
+Use inherited `required`, `error`, and `validationList` props for validation. Use `minValue`, `maxValue`, and `decimalPrecision` for built-in numeric constraints.
+
 ## Styling
 
 The React component uses the same CSS variables as the web component. For custom style options, see [`jb-number-input`](https://github.com/javadbat/jb-number-input) and inherited [`jb-input`](https://github.com/javadbat/jb-input) styling docs.
+
+## CSS variables
+
+Use the same CSS variables as the web component, plus inherited `jb-input` variables for the shared input shell.
+
+## Accessibility notes
+
+Set `label` for the field name. When `showControlButton` is enabled, keep the input enabled only when increment/decrement controls should be usable.
 
 ## Shared Documentation
 
