@@ -230,7 +230,7 @@ export const WithStartSection: Story = {
   render: (args) => {
     return (
       <JBNumberInput {...args}>
-        <div slot="start-section" style={{ width: '24px', height: '24px', backgroundColor: '#262626' }}></div>
+        <div slot="start-section" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
       </JBNumberInput>
     );
   },
@@ -246,7 +246,7 @@ export const WithEndSection: Story = {
   render: (args) => {
     return (
       <JBNumberInput {...args}>
-        <div slot="end-section" style={{ width: '24px', height: '24px', backgroundColor: '#262626' }}></div>
+        <div slot="end-section" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
       </JBNumberInput>
     );
   },
@@ -261,8 +261,8 @@ export const WithStartAndEndSection: Story = {
   render: (args) => {
     return (
       <JBNumberInput {...args}>
-        <div slot="end-section" style={{ width: '24px', height: '24px', backgroundColor: '#262626' }}></div>
-        <div slot="start-section" style={{ width: '24px', height: '24px', backgroundColor: '#262626' }}></div>
+        <div slot="end-section" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
+        <div slot="start-section" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
       </JBNumberInput>
     );
   },

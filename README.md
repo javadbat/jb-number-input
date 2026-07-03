@@ -215,7 +215,7 @@ input.validation.list = [
 ```css
 jb-number-input {
   --jb-number-input-input-direction: ltr;
-  --jb-number-input-button-width: 40px;
+  --jb-number-input-button-width: 2.5rem;
   --jb-number-input-increase-button-color: #047857;
   --jb-number-input-decrease-button-color: #b91c1c;
 }

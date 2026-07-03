@@ -7,7 +7,7 @@
             height: 100%;
             cursor: pointer;
             .number-control-button {
-                width: var(--jb-number-input-button-width, 36px);
+                width: var(--jb-number-input-button-width, 2.25rem);
                 height: 100%;
                 text-align: center;
             }
@@ -20,7 +20,7 @@
 
                 .increase-icon {
                     stroke: var(--increase-button-color);
-                    stroke-width: 14px;
+                    stroke-width: 0.875rem;
                     height: 100%;
                     width: 100%;
                     display: block;
@@ -41,7 +41,7 @@
 
                 .decrease-icon {
                     stroke: var(--decrease-button-color);
-                    stroke-width: 14px;
+                    stroke-width: 0.875rem;
                     height: 100%;
                     width: 100%;
                     display: block;
