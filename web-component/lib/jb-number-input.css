@@ -1,5 +1,5 @@
 .jb-input-web-component {
-    --jb-input-input-direction: var(--jb-number-input-input-direction, ltr);
+    --jb-input-input-direction: var(--input-direction);
 
     .number-control-wrapper {
         .number-control-buttons {
@@ -7,15 +7,15 @@
             height: 100%;
             cursor: pointer;
             .number-control-button {
-                width: var(--jb-number-input-button-width, 2.25rem);
+                width: var(--button-width);
                 height: 100%;
                 text-align: center;
             }
 
             .increase-number-button {
-                background: var(--jb-number-input-increase-button-bg, transparent);
-                border: var(--jb-number-input-increase-button-border, none);
-                border-radius: var(--jb-number-input-increase-button-border-radius, 0);
+                background: var(--increase-button-bg);
+                border: var(--increase-button-border);
+                border-radius: var(--increase-button-border-radius);
                 box-sizing: border-box;
 
                 .increase-icon {
@@ -34,9 +34,9 @@
             }
 
             .decrease-number-button {
-                border: var(--jb-number-input-decrease-button-border, none);
-                border-radius: var(--jb-number-input-decrease-button-border-radius, 0);
-                background: var(--jb-number-input-decrease-button-bg, transparent);
+                border: var(--decrease-button-border);
+                border-radius: var(--decrease-button-border-radius);
+                background: var(--decrease-button-bg);
                 box-sizing: border-box;
 
                 .decrease-icon {
