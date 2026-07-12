@@ -16,18 +16,19 @@ export const JBNumberInput = forwardRef<JBNumberInputWebComponent | undefined,Pr
     [element],
   );
   // these props passed as ...otherProps to component for shorter code: minValue,maxValue,acceptNegative,decimalPrecision,showControlButton,showThousandSeparator,thousandSeparator,step,showPersianNumber
-  const {disabled,required,validationList,value,onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup, children, ...otherProps} = props;
-  useJBInputAttribute<JBNumberInputWebComponent>(element,{disabled,required,validationList,value,...otherProps});
+  const {disabled,initialValue,required,validationList,value,onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup, children, ...otherProps} = props;
+  useJBInputAttribute<JBNumberInputWebComponent>(element,{disabled,required,validationList,...otherProps});
   useJBInputEvents<JBNumberInputWebComponent>(element,{onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup,...otherProps});
 
   return (
-    <jb-number-input ref={element} {...otherProps}>
+    <jb-number-input ref={element} value={value?.toString() ?? ""} initialValue={initialValue?.toString() ?? ""} {...otherProps}>
       {props.children}
     </jb-number-input>
   );
 });
 
 export type Props = BaseProps<JBNumberInputWebComponent> & {
+    initialValue?: string | number | null,
     minValue?:number,
     maxValue?:number,
     acceptNegative?:boolean,
