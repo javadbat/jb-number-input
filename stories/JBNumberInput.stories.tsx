@@ -1,7 +1,7 @@
 import React from 'react';
 import { JBNumberInput } from 'jb-number-input/react';
 import JBInputNumberTest from './samples/JBInputNumberTest';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, waitFor } from 'storybook/test';
 import {
   getDecreaseButton,
