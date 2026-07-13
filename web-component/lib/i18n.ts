@@ -1,6 +1,8 @@
 import {JBDictionary} from 'jb-core/i18n';
 export type JBNumberInputDictionary = {
   numberValidation:string,
+  increaseValue:string,
+  decreaseValue:string,
 }
 
 /**
@@ -17,8 +19,12 @@ export type JBNumberInputDictionary = {
 export const dictionary = new JBDictionary<JBNumberInputDictionary>({
   "fa":{
     numberValidation:"مقدار وارد شده میبایست عدد باشد",
+    increaseValue:"افزایش مقدار",
+    decreaseValue:"کاهش مقدار",
   },
   "en":{
     numberValidation:"Your entered value must be number",
+    increaseValue:"Increase value",
+    decreaseValue:"Decrease value",
   }
 });
