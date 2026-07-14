@@ -7,9 +7,21 @@
             height: 100%;
             cursor: pointer;
             .number-control-button {
+                all: unset;
+                box-sizing: border-box;
+                cursor: pointer;
                 width: var(--button-width);
                 height: 100%;
                 text-align: center;
+
+                &:disabled {
+                    cursor: default;
+                }
+
+                &:focus-visible {
+                    outline: 2px solid var(--jb-number-input-focus-ring-color, Highlight);
+                    outline-offset: 2px;
+                }
             }
 
             .increase-number-button {

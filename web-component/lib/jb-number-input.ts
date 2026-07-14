@@ -190,6 +190,11 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       this.#onNumberInputAttributeChange(name, newValue);
     } else {
       this.onAttributeChange(name, newValue);
+      if (name === "disabled") {
+        this.numberInputElements?.controlButtons?.querySelectorAll("button").forEach((button) => {
+          button.disabled = this.disabled;
+        });
+      }
     }
   }
   #standardNumberValue(valueString: string, _oldValue:JBInputValue, _prevResult:JBInputValue, eventType:ValueSetterEventType ): JBInputValue {
@@ -308,6 +313,9 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     const buttonsElement = document.createElement("div");
     buttonsElement.classList.add("number-control-wrapper");
     buttonsElement.innerHTML = renderButtonsHTML();
+    buttonsElement.querySelectorAll("button").forEach((button) => {
+      button.disabled = this.disabled;
+    });
     buttonsElement
       .querySelector(".increase-number-button")!
       .addEventListener("click", this.increaseNumber.bind(this, true));
