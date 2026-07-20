@@ -1,0 +1,9 @@
+jb-number-input.bootstrap-style {
+  --jb-number-input-increase-button-color: #495057;
+  --jb-number-input-increase-button-color-hover: var(--jb-primary);
+  --jb-number-input-decrease-button-color: #495057;
+  --jb-number-input-decrease-button-color-hover: #dc3545;
+  --jb-number-input-increase-button-bg: var(--jb-surface-hover);
+  --jb-number-input-decrease-button-bg: var(--jb-surface-hover);
+  --jb-number-input-focus-ring-color: var(--jb-focus-color);
+}

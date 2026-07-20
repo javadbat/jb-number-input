@@ -16,7 +16,7 @@
     "ورودی اعداد فارسی",
     "web component"
   ],
-  "version": "1.5.0",
+  "version": "1.6.0",
   "bugs": "https://github.com/javadbat/jb-number-input/issues",
   "license": "MIT",
   "files": [
@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "jb-input": ">=3.11.3",
-    "jb-validation":">=0.4.0",
-    "jb-core":">=0.18.1"
+    "jb-validation":">=1.0.0",
+    "jb-core":">=0.30.0"
   }
 }

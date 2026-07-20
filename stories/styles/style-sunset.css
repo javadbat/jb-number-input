@@ -1,0 +1,9 @@
+jb-number-input.sunset-style {
+  --jb-number-input-increase-button-color: var(--jb-text-primary);
+  --jb-number-input-increase-button-color-hover: var(--jb-primary);
+  --jb-number-input-decrease-button-color: var(--jb-text-primary);
+  --jb-number-input-decrease-button-color-hover: var(--jb-primary-hover);
+  --jb-number-input-increase-button-bg: oklch(100% 0 0 / 0.08);
+  --jb-number-input-decrease-button-bg: oklch(100% 0 0 / 0.08);
+  --jb-number-input-focus-ring-color: var(--jb-focus-color);
+}
