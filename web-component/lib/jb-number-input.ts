@@ -107,7 +107,9 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       return;
     }
     this.#showThousandSeparator = newValue;
-    this.value = `${this.value}`;
+    // This only refreshes presentation; it must not block a later initialValue
+    // from initializing an otherwise untouched input.
+    this.setValueFromInternal(`${this.value}`);
   }
   #thousandSeparator = ","
   get thousandSeparator() {
@@ -118,7 +120,8 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       return;
     }
     this.#thousandSeparator = String(value);
-    this.value = `${this.value}`;
+    // Reformat the existing display without marking the live value as assigned.
+    this.setValueFromInternal(`${this.value}`);
   }
   //will show persian number even if user type en number but value will be passed as en number
   #showPersianNumber = i18n.locale.numberingSystem == "arabext";
@@ -127,7 +130,8 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   }
   set showPersianNumber(value: boolean) {
     this.#showPersianNumber = Boolean(value);
-    this.value = `${this.value}`;
+    // Changing digit presentation is configuration, not a live-value update.
+    this.setValueFromInternal(`${this.value}`);
   }
   //if user type or paste something not a number, this char will be filled the replacement in most cases will be '0'
   #invalidNumberReplacement = "";

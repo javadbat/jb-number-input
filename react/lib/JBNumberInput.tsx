@@ -19,9 +19,10 @@ export const JBNumberInput = forwardRef<JBNumberInputWebComponent | undefined,Pr
   const {disabled,initialValue,required,validationList,value,onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup, children, ...otherProps} = props;
   useJBInputAttribute<JBNumberInputWebComponent>(element,{disabled,required,validationList,...otherProps});
   useJBInputEvents<JBNumberInputWebComponent>(element,{onBeforeinput,onBlur,onChange,onEnter,onFocus,onInput,onKeydown,onKeyup,...otherProps});
+  const valueProps = value === undefined ? {} : { value: value?.toString() ?? "" };
 
   return (
-    <jb-number-input ref={element} value={value?.toString() ?? ""} initialValue={initialValue?.toString() ?? ""} {...otherProps}>
+    <jb-number-input ref={element} initialValue={initialValue?.toString() ?? ""} {...valueProps} {...otherProps}>
       {props.children}
     </jb-number-input>
   );
