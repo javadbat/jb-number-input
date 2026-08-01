@@ -10,6 +10,7 @@ import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils.js";
 import { renderButtonsHTML } from "./render";
 import { i18n } from "jb-core/i18n";
+import { parseBooleanAttribute } from "jb-core";
 
 export * from "./types.js";
 
@@ -217,9 +218,8 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   #onNumberInputAttributeChange(name: string, value: string) {
     switch (name) {
       case 'thousand-separator':
-        if (value == '' || value == "true" || value == "false") {
-
-          this.showThousandSeparator = value == '' ? true : value === 'true';
+        if (["", "true", "false"].includes(value.toLowerCase())) {
+          this.showThousandSeparator = parseBooleanAttribute(value);
         } else {
           this.#showThousandSeparator = true;
           this.#thousandSeparator = value;
@@ -229,7 +229,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         this.step = Number(value);
         break;
       case "show-persian-number":
-        this.showPersianNumber = value == '' ? true : value === 'true';
+        this.showPersianNumber = parseBooleanAttribute(value);
         break;
       case 'min':
         this.minValue = value;
@@ -241,14 +241,10 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         this.decimalPrecision = value;
         break;
       case "accept-negative":
-        if (value == '' || value == "true" || value == "false") {
-          this.acceptNegative = value == '' ? true : value === 'true';
-        }
+        this.acceptNegative = parseBooleanAttribute(value);
         break;
       case "show-control-button":
-        if (value == '' || value == "true" || value == "false") {
-          this.showControlButton = value == '' ? true : value === 'true';
-        }
+        this.showControlButton = parseBooleanAttribute(value);
         break;
       case 'type':
         //we do nothing but just prevent input to get number type because of some limitation
