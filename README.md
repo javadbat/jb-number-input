@@ -16,18 +16,19 @@
 
 ## When to use
 
-Use `jb-number-input` when the value is numeric and needs number-specific filtering, formatting, validation, or step controls.
+Use `jb-number-input` when the value is numeric and needs number-specific filtering, formatting, validation, or step controls. [See the interactive examples](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--overview).
 
 Use [`jb-input`](https://github.com/javadbat/jb-input) for plain text. Use more specific inputs such as `jb-mobile-input`, `jb-date-input`, or `jb-payment-input` when the value has a specialized domain format.
 
 ## Demo
 
-- [CodePen](https://codepen.io/javadbat/pen/gONgKRw)
-- [Storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbnumberinput)
+[Try the interactive examples](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--overview) or [open the CodePen](https://codepen.io/javadbat/pen/gONgKRw).
 
 ## Using With JS Frameworks
 
 <a href="https://github.com/javadbat/jb-number-input/tree/main/react" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/React.js-jb--number--input%2Freact-000.svg?logo=react&logoColor=%2361DAFB" height="30" /></a>
+
+See the [React API and examples](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbnumberinput-react-readme--docs).
 
 Other integrations: <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#angular" target="_blank" rel="noopener noreferrer">Angular</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#vue" target="_blank" rel="noopener noreferrer">Vue</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#nuxt" target="_blank" rel="noopener noreferrer">Nuxt</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#svelte" target="_blank" rel="noopener noreferrer">Svelte</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#sveltekit" target="_blank" rel="noopener noreferrer">SvelteKit</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#solidjs" target="_blank" rel="noopener noreferrer">SolidJS</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#lit" target="_blank" rel="noopener noreferrer">Lit</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#nextjs" target="_blank" rel="noopener noreferrer">Next.js</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#astro" target="_blank" rel="noopener noreferrer">Astro</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#blazor" target="_blank" rel="noopener noreferrer">Blazor</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#server-rendered-templates" target="_blank" rel="noopener noreferrer">Server-rendered templates</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#wordpress" target="_blank" rel="noopener noreferrer">WordPress</a> · <a href="https://javadbat.github.io/design-system/?path=/docs/getting-started-framework-integration--docs#alpinejs-and-htmx" target="_blank" rel="noopener noreferrer">Alpine.js and HTMX</a>
 
@@ -54,35 +55,35 @@ import 'jb-number-input';
 
 ## API reference
 
-`jb-number-input` extends [`jb-input`](https://github.com/javadbat/jb-input). For shared attributes, properties, events, methods, slots, validation, form association, and CSS parts, see the [`jb-input` API](https://github.com/javadbat/jb-input#api-reference).
+`jb-number-input` extends [`jb-input`](https://github.com/javadbat/jb-input). For shared attributes, properties, events, methods, slots, validation, form association, and CSS parts, see the shared [`jb-input` API](https://github.com/javadbat/jb-input#api-reference).
 
 ### Number attributes
 
 | name | type | default | description |
 | --- | --- | --- | --- |
-| `min` | `number` | `null` | Minimum value used during non-input standardization. |
-| `max` | `number` | `null` | Maximum value used during non-input standardization. |
-| `step` | `number` | `1` | Amount added or removed by ArrowUp, ArrowDown, and control buttons. |
-| `decimal-precision` | `number` | `null` | Maximum allowed decimal digits. `null` means no explicit precision limit. |
-| `accept-negative` | `boolean` | `true` | Allows negative values when true. Empty attribute and `"true"` mean true; `"false"` means false. |
-| `show-control-button` | `boolean` | `false` | Shows increment and decrement buttons in the end section. |
-| `thousand-separator` | `boolean \| string` | `false` | Enables display separators. Empty attribute and `"true"` use `,`; a custom string is used as the separator; `"false"` disables it. |
-| `show-persian-number` | `boolean` | locale based | Displays Persian digits while keeping `.value` in English digits. |
+| `min` | `number` | `null` | Minimum value used during non-input standardization. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-min-max) |
+| `max` | `number` | `null` | Maximum value used during non-input standardization. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-min-max) |
+| `step` | `number` | `1` | Amount added or removed by ArrowUp, ArrowDown, and control buttons. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) |
+| `decimal-precision` | `number` | `null` | Maximum allowed decimal digits. `null` means no explicit precision limit. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--precision-and-invalid-replacement) |
+| `accept-negative` | `boolean` | `true` | Allows negative values when true. Empty attribute and `"true"` mean true; `"false"` means false. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator) |
+| `show-control-button` | `boolean` | `false` | Shows increment and decrement buttons in the end section. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) |
+| `thousand-separator` | `boolean \| string` | `false` | Enables display separators. Empty attribute and `"true"` use `,`; a custom string is used as the separator; `"false"` disables it. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma) |
+| `show-persian-number` | `boolean` | locale based | Displays Persian digits while keeping `.value` in English digits. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-persian-char) |
 
 ### Number properties
 
 | name | type | default | description |
 | --- | --- | --- | --- |
-| `minValue` | `number \| null` | `null` | Minimum value used during non-input standardization. |
-| `maxValue` | `number \| null` | `null` | Maximum value used during non-input standardization. |
-| `step` | `number \| null` | `1` | Amount added or removed by ArrowUp, ArrowDown, and control buttons. |
-| `decimalPrecision` | `number \| null` | `null` | Maximum allowed decimal digits. |
-| `acceptNegative` | `boolean` | `true` | Allows negative values. |
-| `showControlButton` | `boolean` | `false` | Shows or hides increment and decrement buttons. |
-| `showThousandSeparator` | `boolean` | `false` | Enables or disables display separators. |
-| `thousandSeparator` | `string` | `","` | Character used when `showThousandSeparator` is true. |
-| `showPersianNumber` | `boolean` | locale based | Displays Persian digits while keeping `.value` standardized. |
-| `invalidNumberReplacement` | `string` | `""` | Replacement text used when a pasted/programmatic value cannot be parsed as a number. |
+| `minValue` | `number \| null` | `null` | Minimum value used during non-input standardization. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-min-max) |
+| `maxValue` | `number \| null` | `null` | Maximum value used during non-input standardization. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-min-max) |
+| `step` | `number \| null` | `1` | Amount added or removed by ArrowUp, ArrowDown, and control buttons. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) |
+| `decimalPrecision` | `number \| null` | `null` | Maximum allowed decimal digits. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--precision-and-invalid-replacement) |
+| `acceptNegative` | `boolean` | `true` | Allows negative values. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator) |
+| `showControlButton` | `boolean` | `false` | Shows or hides increment and decrement buttons. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) |
+| `showThousandSeparator` | `boolean` | `false` | Enables or disables display separators. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma) |
+| `thousandSeparator` | `string` | `","` | Character used when `showThousandSeparator` is true. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator) |
+| `showPersianNumber` | `boolean` | locale based | Displays Persian digits while keeping `.value` standardized. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-persian-char) |
+| `invalidNumberReplacement` | `string` | `""` | Replacement text used when a pasted/programmatic value cannot be parsed as a number. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--precision-and-invalid-replacement) |
 
 ### Number methods
 
@@ -93,7 +94,7 @@ import 'jb-number-input';
 
 ## Value and display value
 
-The component may show a formatted value while `.value` remains standardized.
+The component may show a formatted value while `.value` remains standardized. The [separator demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma) and [Persian-digit demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-persian-char) show both values.
 
 ```js
 const input = document.querySelector('jb-number-input');
@@ -107,6 +108,8 @@ console.log(input.displayValue); // "۱,۲۳۴,۵۶۷"
 ```
 
 ## Configure number behavior
+
+The [precision and replacement demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--precision-and-invalid-replacement) covers decimal truncation and invalid-value fallback.
 
 ```js
 const numberInput = document.querySelector('jb-number-input');
@@ -146,6 +149,8 @@ numberInput.showPersianNumber = false;
 
 ## Thousand separator
 
+See the [comma separator demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma) and [custom separator demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator).
+
 Use `thousand-separator` in one of these forms:
 
 ```html
@@ -164,6 +169,8 @@ Use `thousand-separator` in one of these forms:
 
 ## Control buttons
 
+The [control-button demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) covers button clicks, step values, and `change` events.
+
 Set `showControlButton` or `show-control-button` to show `+` and `-` buttons. Button clicks call `increaseNumber(true)` or `decreaseNumber(true)`, so they dispatch `change`.
 
 ```html
@@ -177,9 +184,11 @@ input.showControlButton = true;
 input.step = 10;
 ```
 
-ArrowUp and ArrowDown also increase or decrease the value and dispatch `change`.
+ArrowUp and ArrowDown also increase or decrease the value and dispatch `change`; the [keyboard stepping demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator) shows this behavior.
 
 ## Validation
+
+The [min/max demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-min-max) shows range normalization and validity checks.
 
 `jb-number-input` adds a number validator to the inherited `jb-input` validation helper. Empty values are valid unless the inherited `required` validation is enabled.
 
@@ -197,7 +206,7 @@ input.validation.list = [
 
 ## CSS variables
 
-`jb-number-input` uses `jb-input` internally. [`jb-input` CSS variables and parts](https://github.com/javadbat/jb-input#css-parts-and-states) also apply.
+`jb-number-input` uses `jb-input` internally. [`jb-input` CSS variables and parts](https://github.com/javadbat/jb-input#css-parts-and-states) also apply. Browse the [number-input style gallery](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput-style--gallery).
 
 | variable | description |
 | --- | --- |
@@ -225,7 +234,7 @@ jb-number-input {
 
 ## Accessibility notes
 
-- Shared label, message, validation, form association, focus, slots, and accessibility behavior come from `jb-input`.
+- Shared label, message, validation, form association, focus, slots, and accessibility behavior come from `jb-input`. [Shared input demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--normal)
 - The inner native input uses `inputMode = "numeric"`.
 - Form submission uses the standardized `.value`, not the formatted `displayValue`.
 

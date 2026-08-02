@@ -9,10 +9,7 @@ React wrapper for [`jb-number-input`](https://github.com/javadbat/jb-number-inpu
 
 ## Demo
 
-- [CodeSandbox preview](https://3f63dj.csb.app/samples/jb-number-input)
-- [CodeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBNumberInput.tsx)
-- [StackBlitz](https://stackblitz.com/edit/jb-number-input-react?file=src%2FApp.tsx)
-- [Storybook](https://javadbat.github.io/design-system/?path=/docs/components-form-elements-inputs-jbnumberinput)
+Try the [component examples](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--overview), or open the [CodeSandbox preview](https://3f63dj.csb.app/samples/jb-number-input), [editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBNumberInput.tsx), or [StackBlitz](https://stackblitz.com/edit/jb-number-input-react?file=src%2FApp.tsx).
 
 ## Installation
 
@@ -28,7 +25,7 @@ import { JBNumberInput } from 'jb-number-input/react';
 
 ## When to use
 
-Use `JBNumberInput` when a React form value is numeric and needs number-specific filtering, formatting, validation, Persian digit display, thousand separators, or step controls.
+Use `JBNumberInput` when a React form value is numeric and needs number-specific filtering, formatting, validation, Persian digit display, thousand separators, or step controls. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--normal)
 
 Use `JBInput` for plain text and more specific inputs such as `JBMobileInput`, `JBDateInput`, or `JBPaymentInput` for specialized domain formats.
 
@@ -38,17 +35,24 @@ Use `JBInput` for plain text and more specific inputs such as `JBMobileInput`, `
 
 | prop | type | description |
 | --- | --- | --- |
-| `minValue` | `number` | Minimum value used during non-input standardization. |
-| `maxValue` | `number` | Maximum value used during non-input standardization. |
-| `step` | `number` | Amount added or removed by ArrowUp, ArrowDown, and control buttons. |
-| `decimalPrecision` | `number` | Maximum allowed decimal digits. |
-| `acceptNegative` | `boolean` | Allows negative values. |
-| `showControlButton` | `boolean` | Shows increment and decrement buttons. |
-| `showThousandSeparator` | `boolean` | Enables display separators. |
-| `thousandSeparator` | `string` | Character used when `showThousandSeparator` is true. |
-| `showPersianNumber` | `boolean` | Displays Persian digits while keeping `.value` in English digits. |
+| `minValue` | `number` | Minimum value used during non-input standardization. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-min-max) |
+| `maxValue` | `number` | Maximum value used during non-input standardization. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-min-max) |
+| `step` | `number` | Amount added or removed by ArrowUp, ArrowDown, and control buttons. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) |
+| `decimalPrecision` | `number` | Maximum allowed decimal digits. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--precision-and-invalid-replacement) |
+| `acceptNegative` | `boolean` | Allows negative values. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator) |
+| `showControlButton` | `boolean` | Shows increment and decrement buttons. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) |
+| `showThousandSeparator` | `boolean` | Enables display separators. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma) |
+| `thousandSeparator` | `string` | Character used when `showThousandSeparator` is true. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator) |
+| `showPersianNumber` | `boolean` | Displays Persian digits while keeping `.value` in English digits. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-persian-char) |
+| `invalidNumberReplacement` | `string` | Replacement text for invalid pasted or programmatic values. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--precision-and-invalid-replacement) |
+
+## Value and display value
+
+`value` is the standardized English-digit value used for forms and calculations; formatting options affect the visible `displayValue`. The [separator demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma) and [Persian-digit demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-persian-char) show both representations.
 
 ## Controlled value
+
+The [normal input demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--normal) shows numeric filtering while the controlled-value example below keeps React state synchronized.
 
 ```jsx
 const [value, setValue] = useState('');
@@ -60,6 +64,8 @@ const [value, setValue] = useState('');
 ```
 
 ## Configure number behavior
+
+The [precision and replacement demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--precision-and-invalid-replacement) covers decimal truncation and invalid-value fallback.
 
 ```jsx
 <JBNumberInput
@@ -84,23 +90,29 @@ const [value, setValue] = useState('');
 
 ## Control buttons
 
+The [control-button demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) covers step changes and `onChange` events.
+
 ```jsx
 <JBNumberInput showControlButton step={10} />;
 ```
 
-Control button clicks and ArrowUp/ArrowDown update the value and dispatch `onChange`.
+Control button clicks and ArrowUp/ArrowDown update the value and dispatch `onChange`; keyboard stepping is shown in the [non-negative number demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator).
 
 ## Thousand separator
 
-Use `showThousandSeparator` and `thousandSeparator` for display formatting. The submitted `event.target.value` remains the standardized English-digit value without separator characters.
+Use `showThousandSeparator` and `thousandSeparator` for display formatting. The submitted `event.target.value` remains the standardized English-digit value without separator characters. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma)
 
 ## Validation
 
-Use inherited `required`, `error`, and `validationList` props for validation. Use `minValue`, `maxValue`, and `decimalPrecision` for built-in numeric constraints.
+Use inherited `required`, `error`, and `validationList` props for validation. Use `minValue`, `maxValue`, and `decimalPrecision` for built-in numeric constraints. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-min-max)
+
+## Slots
+
+`JBNumberInput` inherits `start-section` and `end-section` slots from `JBInput`. See the [combined slot demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--with-start-and-end-section).
 
 ## Styling
 
-The React component uses the same CSS variables as the web component. For custom style options, see [`jb-number-input`](https://github.com/javadbat/jb-number-input) and inherited [`jb-input`](https://github.com/javadbat/jb-input) styling docs.
+The React component uses the same CSS variables as the web component. See the shared [web-component CSS guidance](../README.md#css-variables) and [style gallery](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput-style--gallery).
 
 ## CSS variables
 
@@ -108,11 +120,11 @@ Use the same CSS variables as the web component, plus inherited `jb-input` varia
 
 ## Accessibility notes
 
-Set `label` for the field name. When `showControlButton` is enabled, keep the input enabled only when increment/decrement controls should be usable.
+Set `label` for the field name. When `showControlButton` is enabled, keep the input enabled only when increment/decrement controls should be usable. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--normal)
 
 ## Shared Documentation
 
-For web-component behavior, events, slots, validation, and CSS variables, see [`jb-number-input`](https://github.com/javadbat/jb-number-input).
+For web-component behavior, events, slots, validation, and CSS variables, see the shared [`jb-number-input` documentation](../README.md).
 
 ## Related Docs
 

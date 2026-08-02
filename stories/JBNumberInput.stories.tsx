@@ -235,6 +235,32 @@ export const NumberWithMinMax: Story = {
   }
 };
 
+export const PrecisionAndInvalidReplacement: Story = {
+  args: {
+    label: 'precision and invalid replacement',
+    decimalPrecision: 2,
+  },
+  play: async ({ canvasElement }) => {
+    const numberInput = getNumberInput(canvasElement);
+    const nativeInput = getNativeInput(numberInput);
+    numberInput.invalidNumberReplacement = '0';
+
+    numberInput.value = '12.345';
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('12.34');
+      expect(nativeInput.value).toBe('12.34');
+    });
+
+    numberInput.value = '.';
+
+    await waitFor(() => {
+      expect(numberInput.value).toBe('0');
+      expect(nativeInput.value).toBe('0');
+    });
+  },
+};
+
 export const NonNegativeNumberWithUnderlineSeparator: Story = {
   args: {
     label: 'non-negative number with underline separator',
