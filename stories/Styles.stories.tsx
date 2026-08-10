@@ -90,7 +90,7 @@ export const Gallery: Story = {
             boxShadow: "0 0.75rem 1.75rem oklch(0% 0 0 / 0.08)",
           }}
         >
-          <div style={{ width: "100%", color: "var(--jb-text-primary, #334155)", fontSize: "0.875rem", fontWeight: 700, lineHeight: 1.4, textAlign: "center" }}>{sample.name}</div>
+          <div style={{ width: "100%", color: "var(--jb-content-primary, #334155)", fontSize: "0.875rem", fontWeight: 700, lineHeight: 1.4, textAlign: "center" }}>{sample.name}</div>
           <NumberInputStyleSample className={sample.className} />
         </section>
       ))}

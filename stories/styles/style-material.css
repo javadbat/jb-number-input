@@ -2,7 +2,7 @@ jb-number-input.material-style {
   --jb-number-input-button-width: 2.5rem;
   --jb-number-input-increase-button-color: var(--jb-primary);
   --jb-number-input-increase-button-color-hover: var(--jb-primary-hover);
-  --jb-number-input-decrease-button-color: var(--jb-text-secondary);
+  --jb-number-input-decrease-button-color: var(--jb-content-secondary);
   --jb-number-input-decrease-button-color-hover: var(--jb-error);
   --jb-number-input-increase-button-bg: var(--jb-surface-container-highest);
   --jb-number-input-decrease-button-bg: var(--jb-surface-container-highest);

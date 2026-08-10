@@ -1,7 +1,7 @@
 jb-number-input.forest-style {
-  --jb-number-input-increase-button-color: var(--jb-text-primary);
+  --jb-number-input-increase-button-color: var(--jb-content-primary);
   --jb-number-input-increase-button-color-hover: var(--jb-primary);
-  --jb-number-input-decrease-button-color: var(--jb-text-primary);
+  --jb-number-input-decrease-button-color: var(--jb-content-primary);
   --jb-number-input-decrease-button-color-hover: #ffb26b;
   --jb-number-input-increase-button-bg: oklch(88% 0.08 130 / 0.1);
   --jb-number-input-decrease-button-bg: oklch(88% 0.08 130 / 0.1);

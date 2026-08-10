@@ -1,7 +1,7 @@
 jb-number-input.aurora-style {
-  --jb-number-input-increase-button-color: var(--jb-text-secondary);
+  --jb-number-input-increase-button-color: var(--jb-content-secondary);
   --jb-number-input-increase-button-color-hover: var(--jb-focus-color);
-  --jb-number-input-decrease-button-color: var(--jb-text-secondary);
+  --jb-number-input-decrease-button-color: var(--jb-content-secondary);
   --jb-number-input-decrease-button-color-hover: #ff8fb8;
   --jb-number-input-increase-button-bg: oklch(100% 0 0 / 0.04);
   --jb-number-input-decrease-button-bg: oklch(100% 0 0 / 0.04);

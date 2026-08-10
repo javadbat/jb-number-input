@@ -1,8 +1,8 @@
 jb-number-input.ant-design-style {
   --jb-number-input-button-width: 2rem;
-  --jb-number-input-increase-button-color: var(--jb-text-secondary);
+  --jb-number-input-increase-button-color: var(--jb-content-secondary);
   --jb-number-input-increase-button-color-hover: var(--jb-primary);
-  --jb-number-input-decrease-button-color: var(--jb-text-secondary);
+  --jb-number-input-decrease-button-color: var(--jb-content-secondary);
   --jb-number-input-decrease-button-color-hover: #ff4d4f;
   --jb-number-input-focus-ring-color: var(--jb-focus-color);
 }
