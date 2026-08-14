@@ -126,10 +126,16 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   }
   //will show persian number even if user type en number but value will be passed as en number
   #showPersianNumber = i18n.locale.numberingSystem == "arabext";
+  #hasShowPersianNumberOverride = false;
+  #unsubscribeLocaleChange: VoidFunction | null = null;
   get showPersianNumber() {
     return this.#showPersianNumber;
   }
   set showPersianNumber(value: boolean) {
+    this.#hasShowPersianNumberOverride = true;
+    this.#setShowPersianNumber(value);
+  }
+  #setShowPersianNumber(value: boolean) {
     this.#showPersianNumber = Boolean(value);
     // Changing digit presentation is configuration, not a live-value update.
     this.setValueFromInternal(`${this.value}`);
@@ -163,6 +169,18 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
     super();
     this.#initNumberInputWebComponent();
   }
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.#unsubscribeLocaleChange?.();
+    if (!this.#hasShowPersianNumberOverride) this.#setShowPersianNumber(i18n.locale.numberingSystem === "arabext");
+    this.#unsubscribeLocaleChange = i18n.subscribe(() => {
+      if (!this.#hasShowPersianNumberOverride) this.#setShowPersianNumber(i18n.locale.numberingSystem === "arabext");
+    });
+  }
+  disconnectedCallback(): void {
+    this.#unsubscribeLocaleChange?.();
+    this.#unsubscribeLocaleChange = null;
+  }
   #addNumberInputEventListeners() {
     this.elements.input.addEventListener("beforeinput", this.#onNumberInputBeforeInput.bind(this));
     this.addEventListener("keydown", this.#onNumberInputKeyDown.bind(this));
@@ -189,10 +207,15 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
       ...JBNumberInputWebComponent.numberInputObservedAttributes
     ];
   }
-  attributeChangedCallback(name: string, _oldValue: string, newValue: string): void {
+  attributeChangedCallback(name: string, _oldValue: string | null, newValue: string | null): void {
     // call base jb-input on attribute changes
     if ([...JBNumberInputWebComponent.numberInputObservedAttributes, 'type'].includes(name)) {
-      this.#onNumberInputAttributeChange(name, newValue);
+      if (name === "show-persian-number") {
+        this.#hasShowPersianNumberOverride = newValue !== null;
+        this.#setShowPersianNumber(parseBooleanAttribute(newValue, i18n.locale.numberingSystem === "arabext"));
+      } else {
+        this.#onNumberInputAttributeChange(name, newValue ?? "");
+      }
     } else {
       this.onAttributeChange(name, newValue);
       if (name === "disabled") {
@@ -227,9 +250,6 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         break;
       case 'step':
         this.step = Number(value);
-        break;
-      case "show-persian-number":
-        this.showPersianNumber = parseBooleanAttribute(value);
         break;
       case 'min':
         this.minValue = value;
