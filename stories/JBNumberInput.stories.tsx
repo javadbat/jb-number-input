@@ -1,5 +1,6 @@
 import React from 'react';
 import { JBNumberInput } from 'jb-number-input/react';
+import type { JBNumberInputWebComponent } from 'jb-number-input';
 import { JBButton } from 'jb-button/react';
 import JBInputNumberTest from './samples/JBInputNumberTest';
 import type { Meta, StoryObj } from '@storybook/react-vite';
@@ -318,6 +319,9 @@ export const NumberWithButtons: Story = {
     const increaseButton = getIncreaseButton(numberInput);
     const decreaseButton = getDecreaseButton(numberInput);
 
+    expect(increaseButton.querySelector('jb-icon-plus')).toBeTruthy();
+    expect(decreaseButton.querySelector('jb-icon-minus')).toBeTruthy();
+
     numberInput.value = '0';
 
     await userEvent.click(increaseButton);
@@ -335,6 +339,53 @@ export const NumberWithButtons: Story = {
       expect(nativeInput.value).toBe('0');
       expect(args.onChange).toHaveBeenCalledTimes(2);
     });
+  }
+};
+
+export const ControlButtonSizeVariants: Story = {
+  render: () => (
+    <div style={{ display: 'grid', gap: '1rem', width: '20rem' }}>
+      {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map(size => (
+        <JBNumberInput key={size} label={`${size} size`} size={size} showControlButton />
+      ))}
+    </div>
+  ),
+  play: async ({ canvasElement }) => {
+    const numberInputs = Array.from(canvasElement.querySelectorAll<JBNumberInputWebComponent>('jb-number-input'));
+    const buttonWidths = numberInputs.map(numberInput => parseFloat(getComputedStyle(getIncreaseButton(numberInput)).width));
+    const iconHeights = numberInputs.map(numberInput => {
+      const icon = getIncreaseButton(numberInput).querySelector('jb-icon-plus');
+      if (!icon) throw new Error('Increase icon was not rendered');
+      return parseFloat(getComputedStyle(icon).height);
+    });
+
+    expect(buttonWidths).toEqual([...buttonWidths].sort((a, b) => a - b));
+    expect(iconHeights).toEqual([...iconHeights].sort((a, b) => a - b));
+    expect(new Set(buttonWidths).size).toBe(5);
+    expect(new Set(iconHeights).size).toBe(5);
+  }
+};
+
+export const ControlledTypingKeepsFocus: Story = {
+  render: () => {
+    const [value, setValue] = React.useState('');
+
+    return <JBNumberInput label="Controlled value" value={value} onInput={event => setValue(event.target.value)} showControlButton />;
+  },
+  play: async ({ canvasElement }) => {
+    const numberInput = getNumberInput(canvasElement);
+    const nativeInput = getNativeInput(numberInput);
+    nativeInput.focus();
+
+    for (const character of ['1', '2', '3']) {
+      await userEvent.keyboard(character);
+      await waitFor(() => {
+        expect(nativeInput.getRootNode()).toHaveProperty('activeElement', nativeInput);
+      });
+    }
+
+    expect(numberInput.value).toBe('123');
+    expect(nativeInput.value).toBe('123');
   }
 };
 

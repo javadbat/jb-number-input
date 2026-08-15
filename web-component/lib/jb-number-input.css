@@ -2,10 +2,16 @@
     --jb-input-input-direction: var(--input-direction);
 
     .number-control-wrapper {
+        display: flex;
+        height: 100%;
+        align-items: stretch;
+
         .number-control-buttons {
             display: flex;
             height: 100%;
+            align-items: stretch;
             cursor: pointer;
+
             .number-control-button {
                 all: unset;
                 box-sizing: border-box;
@@ -13,6 +19,9 @@
                 width: var(--button-width);
                 height: 100%;
                 text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 &:disabled {
                     cursor: default;
@@ -31,16 +40,13 @@
                 box-sizing: border-box;
 
                 .increase-icon {
-                    stroke: var(--increase-button-color);
-                    stroke-width: 0.875rem;
-                    height: 100%;
-                    width: 100%;
-                    display: block;
+                    --jb-icon-color: var(--increase-button-color);
+                    --jb-icon-size: var(--control-icon-size);
                 }
 
                 &:hover {
                     .increase-icon {
-                        stroke: var(--increase-button-color-hover);
+                        --jb-icon-color: var(--increase-button-color-hover);
                     }
                 }
             }
@@ -52,16 +58,13 @@
                 box-sizing: border-box;
 
                 .decrease-icon {
-                    stroke: var(--decrease-button-color);
-                    stroke-width: 0.875rem;
-                    height: 100%;
-                    width: 100%;
-                    display: block;
+                    --jb-icon-color: var(--decrease-button-color);
+                    --jb-icon-size: var(--control-icon-size);
                 }
 
                 &:hover {
                     .decrease-icon {
-                        stroke: var(--decrease-button-color-hover);
+                        --jb-icon-color: var(--decrease-button-color-hover);
                     }
                 }
             }

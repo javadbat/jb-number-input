@@ -220,6 +220,50 @@
               "description": "Width of each control button."
             },
             {
+              "name": "--jb-number-input-button-width-xs",
+              "description": "Width of each control button when size is xs."
+            },
+            {
+              "name": "--jb-number-input-button-width-sm",
+              "description": "Width of each control button when size is sm."
+            },
+            {
+              "name": "--jb-number-input-button-width-md",
+              "description": "Width of each control button when size is md."
+            },
+            {
+              "name": "--jb-number-input-button-width-lg",
+              "description": "Width of each control button when size is lg."
+            },
+            {
+              "name": "--jb-number-input-button-width-xl",
+              "description": "Width of each control button when size is xl."
+            },
+            {
+              "name": "--jb-number-input-icon-size",
+              "description": "Size of both control icons."
+            },
+            {
+              "name": "--jb-number-input-icon-size-xs",
+              "description": "Control icon size when size is xs."
+            },
+            {
+              "name": "--jb-number-input-icon-size-sm",
+              "description": "Control icon size when size is sm."
+            },
+            {
+              "name": "--jb-number-input-icon-size-md",
+              "description": "Control icon size when size is md."
+            },
+            {
+              "name": "--jb-number-input-icon-size-lg",
+              "description": "Control icon size when size is lg."
+            },
+            {
+              "name": "--jb-number-input-icon-size-xl",
+              "description": "Control icon size when size is xl."
+            },
+            {
               "name": "--jb-number-input-increase-button-bg",
               "description": "Increase button background."
             },

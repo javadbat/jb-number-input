@@ -171,7 +171,7 @@ Use `thousand-separator` in one of these forms:
 
 The [control-button demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-buttons) covers button clicks, step values, and `change` events.
 
-Set `showControlButton` or `show-control-button` to show `+` and `-` buttons. Button clicks call `increaseNumber(true)` or `decreaseNumber(true)`, so they dispatch `change`.
+Set `showControlButton` or `show-control-button` to show `+` and `-` buttons. Their glyphs use `jb-icon-plus` and `jb-icon-minus` from `jb-icons`. Button clicks call `increaseNumber(true)` or `decreaseNumber(true)`, so they dispatch `change`.
 
 ```html
 <jb-number-input show-control-button step="10"></jb-number-input>
@@ -212,6 +212,9 @@ input.validation.list = [
 | --- | --- |
 | `--jb-number-input-input-direction` | Direction of the inner input. The number input defaults to `ltr`. |
 | `--jb-number-input-button-width` | Width of each control button. |
+| `--jb-number-input-button-width-{xs,sm,md,lg,xl}` | Width of each control button for an input size variant. |
+| `--jb-number-input-icon-size` | Size of both control icons. |
+| `--jb-number-input-icon-size-{xs,sm,md,lg,xl}` | Control icon size for an input size variant. |
 | `--jb-number-input-increase-button-bg` | Increase button background. |
 | `--jb-number-input-decrease-button-bg` | Decrease button background. |
 | `--jb-number-input-increase-button-border` | Increase button border. |

@@ -1,6 +1,7 @@
 :host{
   /* Size */
-  --button-width: var(--jb-number-input-button-width, 2.25rem);
+  --button-width: var(--jb-number-input-button-width, var(--jb-number-input-button-width-md, calc(var(--height) - 0.25rem)));
+  --control-icon-size: var(--jb-number-input-icon-size, var(--jb-number-input-icon-size-md, var(--jb-icon-size-md, 1.5rem)));
   --increase-button-border-radius: var(--jb-number-input-increase-button-border-radius, 0);
   --decrease-button-border-radius: var(--jb-number-input-decrease-button-border-radius, 0);
   /* Theme/Color */
@@ -14,4 +15,29 @@
   --input-direction: var(--jb-number-input-input-direction, ltr);
   --increase-button-border: var(--jb-number-input-increase-button-border, none);
   --decrease-button-border: var(--jb-number-input-decrease-button-border, none);
+}
+
+:host([size="xs"]) {
+  --button-width: var(--jb-number-input-button-width, var(--jb-number-input-button-width-xs, calc(var(--height) - 0.25rem)));
+  --control-icon-size: var(--jb-number-input-icon-size, var(--jb-number-input-icon-size-xs, var(--jb-icon-size-xs, 1rem)));
+}
+
+:host([size="sm"]) {
+  --button-width: var(--jb-number-input-button-width, var(--jb-number-input-button-width-sm, calc(var(--height) - 0.25rem)));
+  --control-icon-size: var(--jb-number-input-icon-size, var(--jb-number-input-icon-size-sm, var(--jb-icon-size-sm, 1.25rem)));
+}
+
+:host([size="md"]) {
+  --button-width: var(--jb-number-input-button-width, var(--jb-number-input-button-width-md, calc(var(--height) - 0.25rem)));
+  --control-icon-size: var(--jb-number-input-icon-size, var(--jb-number-input-icon-size-md, var(--jb-icon-size-md, 1.5rem)));
+}
+
+:host([size="lg"]) {
+  --button-width: var(--jb-number-input-button-width, var(--jb-number-input-button-width-lg, calc(var(--height) - 0.25rem)));
+  --control-icon-size: var(--jb-number-input-icon-size, var(--jb-number-input-icon-size-lg, var(--jb-icon-size-lg, 1.75rem)));
+}
+
+:host([size="xl"]) {
+  --button-width: var(--jb-number-input-button-width, var(--jb-number-input-button-width-xl, calc(var(--height) - 0.25rem)));
+  --control-icon-size: var(--jb-number-input-icon-size, var(--jb-number-input-icon-size-xl, var(--jb-icon-size-xl, 2.25rem)));
 }
