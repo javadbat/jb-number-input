@@ -398,3 +398,9 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
 }
 
 defineWebComponent("jb-number-input", JBNumberInputWebComponent);
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "jb-number-input": JBNumberInputWebComponent;
+  }
+}
