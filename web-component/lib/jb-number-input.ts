@@ -1,3 +1,4 @@
+import { defineWebComponent, parseBooleanAttribute } from "jb-core";
 import CSS from "./jb-number-input.css";
 import VariablesCSS from "./variables.css";
 import "jb-input";
@@ -10,7 +11,6 @@ import { isNumberValidator } from "./validation";
 import { isStringIsNumber, standardValueForNumberInput } from "./utils.js";
 import { renderButtonsHTML } from "./render";
 import { i18n } from "jb-core/i18n";
-import { parseBooleanAttribute } from "jb-core";
 
 export * from "./types.js";
 
@@ -397,7 +397,4 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
   }
 }
 
-const myElementNotExists = !customElements.get("jb-number-input");
-if (myElementNotExists) {
-  window.customElements.define("jb-number-input", JBNumberInputWebComponent);
-}
+defineWebComponent("jb-number-input", JBNumberInputWebComponent);
