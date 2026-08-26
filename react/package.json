@@ -27,7 +27,7 @@
   "types": "./dist/JBNumberInput.d.ts",
   "repository": {
 		"type": "git",
-		"url": "git@github.com:javadbat/jb-number-input-react.git"
+		"url": "https://github.com/javadbat/jb-number-input-react.git"
   },
   "dependencies": {
     "jb-number-input": "^1.2.6"

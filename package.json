@@ -44,7 +44,7 @@
   "customElements": "web-component/custom-elements.json",
   "repository": {
 		"type": "git",
-		"url": "git@github.com:javadbat/jb-number-input.git"
+		"url": "https://github.com/javadbat/jb-number-input.git"
   },
   "dependencies": {
     "jb-icons": "^2.3.0",
