@@ -217,7 +217,7 @@ export class JBNumberInputWebComponent extends JBInputWebComponent {
         this.#onNumberInputAttributeChange(name, newValue ?? "");
       }
     } else {
-      this.onAttributeChange(name, newValue);
+      this.onAttributeChange(name, newValue!);
       if (name === "disabled") {
         this.numberInputElements?.controlButtons?.querySelectorAll("button").forEach((button) => {
           button.disabled = this.disabled;
