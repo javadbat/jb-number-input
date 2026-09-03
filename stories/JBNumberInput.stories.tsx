@@ -35,6 +35,7 @@ export const Normal: Story = {
 
     await waitFor(() => {
       expect(numberInput.value).toBe('12.34');
+      expect(numberInput.valueAsNumber).toBe(12.34);
       expect(numberInput.displayValue).toBe('12.34');
       expect(nativeInput.value).toBe('12.34');
       expect(numberInput.reportValidity()).toBe(true);
@@ -44,6 +45,7 @@ export const Normal: Story = {
 
     await waitFor(() => {
       expect(numberInput.value).toBe('4567');
+      expect(numberInput.valueAsNumber).toBe(4567);
       expect(nativeInput.value).toBe('4567');
     });
   }
@@ -432,7 +434,7 @@ export const WithStartSection: Story = {
   render: (args) => {
     return (
       <JBNumberInput {...args}>
-        <div slot="start-section" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
+        <div slot="inline-start" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
       </JBNumberInput>
     );
   },
@@ -448,7 +450,7 @@ export const WithEndSection: Story = {
   render: (args) => {
     return (
       <JBNumberInput {...args}>
-        <div slot="end-section" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
+        <div slot="inline-end" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
       </JBNumberInput>
     );
   },
@@ -463,8 +465,8 @@ export const WithStartAndEndSection: Story = {
   render: (args) => {
     return (
       <JBNumberInput {...args}>
-        <div slot="end-section" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
-        <div slot="start-section" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
+        <div slot="inline-end" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
+        <div slot="inline-start" style={{ width: '1.5rem', height: '1.5rem', backgroundColor: '#262626' }}></div>
       </JBNumberInput>
     );
   },

@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0] - 2026-09-03
+
+### Changed
+
+- Added the readonly native-style `valueAsNumber` representation; empty or incomplete values return `NaN`.
+- Added inherited support for the standard public `reset()` method through `jb-input`.
+- Breaking: renamed React keyboard event props to the React convention: `onBeforeInput`, `onKeyDown`, and `onKeyUp`; old prop names are removed.
+
 ## [1.8.0] - 2026-09-01
 
 ### Changed

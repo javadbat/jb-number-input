@@ -48,7 +48,7 @@ Use `JBInput` for plain text and more specific inputs such as `JBMobileInput`, `
 
 ## Value and display value
 
-`value` is the standardized English-digit value used for forms and calculations; formatting options affect the visible `displayValue`. The [separator demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma) and [Persian-digit demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-persian-char) show both representations.
+`value` is the standardized English-digit string used for forms, readonly `valueAsNumber` provides its numeric representation through the component ref or event target, and formatting options affect the visible `displayValue`. Empty or incomplete values produce `NaN`. The [separator demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-comma) and [Persian-digit demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-persian-char) show these representations.
 
 ## Controlled value
 
@@ -108,7 +108,7 @@ Use inherited `required`, `error`, and `validationList` props for validation. Us
 
 ## Slots
 
-`JBNumberInput` inherits `start-section` and `end-section` slots from `JBInput`. See the [combined slot demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--with-start-and-end-section).
+`JBNumberInput` inherits `inline-start` and `inline-end` slots from `JBInput`. See the [combined slot demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--with-start-and-inline-end).
 
 ## Styling
 

@@ -81,6 +81,15 @@
           "members": [
             {
               "kind": "field",
+              "name": "valueAsNumber",
+              "description": "Canonical value converted to a number, or NaN when empty or incomplete.",
+              "type": {
+                "text": "number"
+              },
+              "readonly": true
+            },
+            {
+              "kind": "field",
               "name": "minValue",
               "description": "Minimum value used during non-input standardization.",
               "type": {

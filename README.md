@@ -84,6 +84,7 @@ import 'jb-number-input';
 | `thousandSeparator` | `string` | `","` | Character used when `showThousandSeparator` is true. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--non-negative-number-with-underline-separator) |
 | `showPersianNumber` | `boolean` | locale based | Displays Persian digits while keeping `.value` standardized. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--number-with-persian-char) |
 | `invalidNumberReplacement` | `string` | `""` | Replacement text used when a pasted/programmatic value cannot be parsed as a number. [Demo](https://javadbat.github.io/design-system/?path=/story/components-form-elements-inputs-jbnumberinput--precision-and-invalid-replacement) |
+| `valueAsNumber` | `number` | `NaN` | Read-only numeric representation of `.value`; empty or incomplete values return `NaN`. |
 
 ### Number methods
 
@@ -104,6 +105,7 @@ input.showPersianNumber = true;
 input.value = '1234567';
 
 console.log(input.value); // "1234567"
+console.log(input.valueAsNumber); // 1234567
 console.log(input.displayValue); // "۱,۲۳۴,۵۶۷"
 ```
 
